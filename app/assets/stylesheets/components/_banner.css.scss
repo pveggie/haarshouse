@@ -1,0 +1,28 @@
+.banner {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c484d+0,000000+100 */
+background: #8c484d; /* Old browsers */
+background: radial-gradient(ellipse at center, #333333 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+height: 300px;
+background-size: cover;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.banner-content {
+  max-width: 300px;
+  display:flex;
+  align-items: center;
+  color: #ffffff;
+  opacity: 0.9;
+  height: 250px;
+  text-align: center;
+
+  .banner-header {
+    flex: 0 0 0 50%;
+  }
+}
+
+// #8c484d
