@@ -9,9 +9,17 @@ class PagesController < ApplicationController
     until chuck_norris
       joke = get_joke
       if joke =~ /chuck norris/i
-        chuck_norris = true
+        chuck_norris = true unless joke =~ /race|woman|women|gay|black|natives|porn|handicap|god|bible|staring|rape|condom/i
       end
+      @haar_joke = joke.gsub(/chuck norrises/i, "Haars")
+      @haar_joke = joke.gsub(/chuck norris\'s/i, "Haar's")
       @haar_joke = joke.gsub(/chuck norris/i, "Haar")
+      @haar_joke = @haar_joke.gsub(/penis|dick/i, "axe")
+      @haar_joke = @haar_joke.gsub(/american|america/i, "Daein")
+      @haar_joke = @haar_joke.gsub(/beat/i, "sleep")
+      @haar_joke = @haar_joke.gsub(/superman/i, "Chuck Norris")
+      @haar_joke = @haar_joke.gsub(/beard/i, "eyepatch")
+      @haar_joke = @haar_joke.gsub(/pick\-up/i, "wyvern")
     end
 
   end
