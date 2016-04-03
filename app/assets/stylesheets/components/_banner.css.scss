@@ -4,7 +4,7 @@ background: #8c484d; /* Old browsers */
 background: radial-gradient(ellipse at center, #333333 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-height: 300px;
+height: 250px;
 background-size: cover;
 display: flex;
 justify-content: center;
@@ -22,7 +22,6 @@ align-items: center;
 
   .banner-header {
     flex: 0 0 0 50%;
+    text-shadow: 2px 2px 8px #555555;
   }
 }
-
-// #8c484d

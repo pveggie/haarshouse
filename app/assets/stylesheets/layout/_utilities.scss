@@ -10,11 +10,15 @@
   padding-bottom: 5em;
 }
 
+.padded-right {
+  padding-right: 1em;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
 }
-.bg-grey {
+.bg-gray {
   background: #aeaeae;
 }
 .bg-blue {
@@ -22,4 +26,16 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+.text-gray {
+  color: $gray-darker;
+}
+
+.text-light-gray {
+  color: $gray-light;
+}
+
+.text-small {
+  font-size: 10px;
 }
