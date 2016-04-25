@@ -8,6 +8,8 @@ class PagesController < ApplicationController
 
     until chuck_norris
       joke = get_joke
+      return @haar_joke = "Zzzzzzzzzzzzzzz." if joke.nil?
+
       if joke =~ /chuck norris/i
         chuck_norris = true unless joke =~ /race|woman|women|gay|black|natives|porn|handicap|god|bible|staring|rape|condom/i
       end
@@ -30,9 +32,14 @@ class PagesController < ApplicationController
     api_url = 'http://api.icndb.com/jokes/random?escape=javascript'
     joke = ""
 
-    open(api_url) do |stream|
-      joke = JSON.parse(stream.read)
+    begin
+      open(api_url) do |stream|
+        joke = JSON.parse(stream.read)
+      end
+      joke['value']['joke']
+    rescue StandardError
+      return nil
     end
-    joke['value']['joke']
   end
 end
+
