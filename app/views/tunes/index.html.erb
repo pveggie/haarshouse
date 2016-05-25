@@ -1,2 +1,24 @@
-<h1>Tunes#index</h1>
-<p>Find me in app/views/tunes/index.html.erb</p>
+<% content_for(:title) do %>
+  <%= "Haar's House of Tunes" %>
+<% end %>
+
+<%= render partial: 'shared/banner', locals: {haar_joke: @haar_joke}%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-1">
+
+      <div class="row">
+          <% @tunes.each do |tune| %>
+            <div class="col-xs-12 col-sm-4">
+              <iframe id="player" type="text/html"
+              src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
+              frameborder="0"></iframe>
+            </div>
+          <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+

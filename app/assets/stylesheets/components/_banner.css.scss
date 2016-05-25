@@ -4,7 +4,7 @@ background: #8c484d; /* Old browsers */
 background: radial-gradient(ellipse at center, #333333 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-height: 250px;
+height: 200px;
 background-size: cover;
 display: flex;
 justify-content: center;
@@ -17,7 +17,7 @@ align-items: center;
   align-items: center;
   color: #ffffff;
   opacity: 0.9;
-  height: 250px;
+  height: 200px;
   text-align: center;
 
   .banner-header {

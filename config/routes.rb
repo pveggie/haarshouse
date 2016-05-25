@@ -1,21 +1,6 @@
 Rails.application.routes.draw do
 
-
-  get 'tunes/index'
-
-  get 'tunes/show'
-
-  get 'tunes/new'
-
-  get 'tunes/create'
-
-  get 'tunes/edit'
-
-  get 'tunes/update'
-
-  get 'tunes/destroy'
-
-  root to: 'pages#home'
+  root to: 'tunes#index'
 
   resources :tunes
   # The priority is based upon order of creation: first created -> highest priority.
