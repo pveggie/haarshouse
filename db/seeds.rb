@@ -7,13 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Tune.destroy_all
 
-video_ids = ["RDqUAIQLQ-2OE", "8CP7TvaySew", "g5LdihtCspc",
-"sToVooxkJGE", "eb6_J1dq1hk",
-
-
-
-
-  "YV_jKDc1iow", "KopYyhmNirU", "u1nZMU1l0Os",
-]
+video_ids = [
+            "8CP7TvaySew",
+            "g5LdihtCspc",
+            "sToVooxkJGE",
+            "eb6_J1dq1hk",
+            "YV_jKDc1iow",
+            "KopYyhmNirU",
+            "u1nZMU1l0Os",
+            ]
 
 video_ids.each { |video_id| Tune.create(youtube_video_id: video_id)}
