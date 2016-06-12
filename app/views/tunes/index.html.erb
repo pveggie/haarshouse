@@ -15,9 +15,9 @@
             <% @tunes.each do |tune| %>
               <div class="col-xs-12 col-sm-4 video">
                 <div class="video-container" data-video-id="<%= tune.youtube_video_id %>">
-                  <iframe id="player" type="text/html"
-                  src="http://www.youtube.com/embed/<%= tune.youtube_video_id %>"
-                  frameborder="0"></iframe>
+                  <div class="video">
+                    <div id="play-button" data-video-id="<%= tune.youtube_video_id %>"></div>
+                  </div>
                 </div>
               </div>
             <% end %>
