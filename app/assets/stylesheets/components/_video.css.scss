@@ -4,7 +4,7 @@
   position: relative;
 
 
-  background-color: white;
+  background-color: #0F191E;
   -webkit-box-shadow: 0.2px 0.2px 2px 0.5px #175676;
   -moz-box-shadow:    0.2px 0.2px 2px 0.5px #175676;
   box-shadow:         0.2px 0.2px 2px 0.5px #175676;
@@ -32,15 +32,12 @@
 
   background-color: black;
 
-  // margin-bottom: 20px;
-  //
-  //
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#play-button {
+.play-button {
   background-image: image-url('radiant_dawn_play_arrow_small.jpg');
   background-size: cover;
   width: 50px;
