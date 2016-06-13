@@ -18,6 +18,13 @@
                   <div class="video" id="<%= tune.youtube_video_id %>">
                     <div class="play-button" data-video-id="<%= tune.youtube_video_id %>"></div>
                   </div>
+                  <% unless tune.game_title.blank? && tune.song_title.blank? %>
+                    <div class="caption">
+                      <div class="caption-text">
+                      <p><%= tune.game_title %> - <%= tune.song_title %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             <% end %>
