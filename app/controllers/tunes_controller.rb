@@ -1,13 +1,10 @@
 class TunesController < ApplicationController
   require 'json'
   require 'open-uri'
-  before_action :find_tune, only: [:show, :edit, :update, :destroy]
+  before_action :find_tune, only: [:edit, :update, :destroy]
 
   def index
     @tunes = Tune.all
-  end
-
-  def show
   end
 
   def new
@@ -16,17 +13,27 @@ class TunesController < ApplicationController
 
   def create
     @tune = Tune.new(tune_params)
-  end
-
-  def edit
+    if @tune.save
+      redirect_to tunes_path
+    else
+      flash[:alert] = "Song not updated."
+      render :new
+    end
   end
 
   def update
     @tune.update(tune_params)
+    if @tune.save
+      redirect_to tunes_path
+    else
+      flash[:alert] = "Song not updated."
+      render :new
+    end
   end
 
   def destroy
     @tune.delete
+    redirect_to tunes_path
   end
 
   private
@@ -35,6 +42,6 @@ class TunesController < ApplicationController
   end
 
   def tune_params
-    params.require(:tune).permit(:poster, :url, :poster_comment)
+    params.require(:tune).permit(:game_title, :song_title, :youtube_video_id)
   end
 end
