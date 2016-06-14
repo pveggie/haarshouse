@@ -1,0 +1,14 @@
+<div class="wrapper padded">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <%= simple_form_for @tune do |f| %>
+        <%= f.input :game_title %>
+        <%= f.input :song_title %>
+        <%= f.input :youtube_video_id %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
