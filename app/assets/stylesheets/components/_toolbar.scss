@@ -1,0 +1,18 @@
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.toolbar-link {
+  a {
+    // color: $gray-lighter;
+    margin: 10px;
+
+
+    // &:hover {
+    //   opacity: 0.8;
+    //   cursor: pointer;
+    // }
+  }
+}

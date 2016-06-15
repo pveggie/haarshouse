@@ -1,60 +1,60 @@
 <% content_for(:title) do %>
-  <%= "Haar's House of Tunes" %>
+<%= "Haar's House of Tunes" %>
 <% end %>
 
 <div class="wrapper-default padded">
   <div class="container">
-
-    <div class="toolbar">
-      <div class="toolbar-right text-right">
-        <%= link_to new_tune_path do %>
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-        <% end %>
-      </div>
-    </div>
-
     <div class="row">
 
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
         <div class="row">
+
+          <div class="toolbar">
+            <div class="toolbar-right toolbar-link">
+              <%= link_to new_tune_path, class: "btn btn-sm btn-primary" do %>
+                <i class="fa fa-plus-square" aria-hidden="true"></i> Add Song
+              <% end %>
+            </div>
+          </div>
 
           <div class="video-grid">
 
             <% @tunes.each do |tune| %>
-              <div class="col-xs-12 col-sm-4 video">
-                <div class="video-container">
-                  <div class="video" id="<%= tune.youtube_video_id %>">
-                    <div class="play-button" data-video-id="<%= tune.youtube_video_id %>"></div>
-                  </div>
+            <div class="col-xs-12 col-sm-4 video">
+              <div class="video-container">
+                <div class="video" id="<%= tune.youtube_video_id %>">
+                  <div class="play-button" data-video-id="<%= tune.youtube_video_id %>"></div>
+                </div>
 
-                  <div class="icon icon-relative-top-right flex-row">
-                    <%= link_to edit_tune_path(tune) do %>
-                      <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                    <% end %>
+                <div class="icon icon-relative-top-right flex-row">
+                  <%= link_to edit_tune_path(tune) do %>
+                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                  <% end %>
 
-                    <%= link_to tune_path(tune), {method: :delete} do %>
-                      <i class="fa fa-trash"></i>
-                    <% end %>
-                  </div>
+                  <%= link_to tune_path(tune), {method: :delete} do %>
+                  <i class="fa fa-trash"></i>
+                  <% end %>
+                </div>
 
-                  <% unless tune.game_title.blank? && tune.song_title.blank? %>
-                    <div class="caption">
-                      <div class="caption-text">
-                      <p><%= tune.game_title %> - <%= tune.song_title %>
-                      </div>
+                <% unless tune.game_title.blank? && tune.song_title.blank? %>
+                <div class="caption">
+                  <div class="caption-text">
+                    <p><%= tune.game_title %> - <%= tune.song_title %>
                     </div>
+                  </div>
                   <% end %>
                 </div>
               </div>
-            <% end %>
+              <% end %>
+
+            </div>
 
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
 
 
