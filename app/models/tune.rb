@@ -8,6 +8,13 @@ class Tune < ActiveRecord::Base
 # == Relationships ========================================================
 
 # == Validations ==========================================================
+validates :game_title, presence: true
+validates :song_title, presence: true, uniqueness: { scope: :game_title,
+           message: "This song has already been added." }
+validates :youtube_video_id, presence: true,
+           uniqueness: { message: "This video has already been added." }
+
+# validates :poster, presence: true
 
 # == Scopes ===============================================================
 
