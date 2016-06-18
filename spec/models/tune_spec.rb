@@ -43,7 +43,7 @@ RSpec.describe Tune, type: :model do
     end
 
     it 'is valid with a youtube_video_id as a partial containing the id' do
-      expect(test_tune).to allow_value("dSCq7jTL7tQ")
+      expect(test_tune).to allow_value("youtube.com/watch?v=dSCq7jTL7tQ")
                        .for(:youtube_video_id)
     end
 
@@ -52,62 +52,24 @@ RSpec.describe Tune, type: :model do
     end
   end
 
-  # describe "ActiveRecord associations" do
-  #   # http://guides.rubyonrails.org/association_basics.html
-  #   # http://rubydoc.info/github/thoughtbot/shoulda-matchers/master/frames
-  #   # http://rubydoc.info/github/thoughtbot/shoulda-matchers/master/Shoulda/Matchers/ActiveRecord
 
-  #   # Performance tip: stub out as many on create methods as you can when you're testing validations
-  #   # since the test suite will slow down due to having to run them all for each validation check.
-  #   #
-  #   # For example, assume a User has three methods that fire after one is created, stub them like this:
-  #   #
-  #   # before(:each) do
-  #   #   User.any_instance.stub(:send_welcome_email)
-  #   #   User.any_instance.stub(:track_new_user_signup)
-  #   #   User.any_instance.stub(:method_that_takes_ten_seconds_to_complete)
-  #   # end
-  #   #
-  #   # If you performed 5-10 validation checks against a User, that would save a ton of time.
+  context "callbacks" do
+    # http://guides.rubyonrails.org/active_record_callbacks.html
+    # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
 
-  #   # Associations
-  #   it { expect(profile).to belong_to(:user) }
-  #   it { expect(wishlist_item).to belong_to(:wishlist).counter_cache }
-  #   it { expect(metric).to belong_to(:analytics_dashboard).touch }
-  #   it { expect(user).to have_one(:profile }
-  #   it { expect(classroom).to have_many(:students) }
-  #   it { expect(initech_corporation).to have_many(:employees).with_foreign_key(:worker_drone_id) }
-  #   it { expect(article).to have_many(:comments).order(:created_at) }
-  #   it { expect(user).to have_many(:wishlist_items).through(:wishlist) }
-  #   it { expect(todo_list).to have_many(:todos).dependent(:destroy) }
-  #   it { expect(account).to have_many(:billings).dependent(:nullify) }
-  #   it { expect(product).to have_and_belong_to_many(:descriptors) }
-  #   it { expect(gallery).to accept_nested_attributes_for(:paintings) }
+    let(:test_tune) { FactoryGirl.create(:tune) }
 
-  #   # Read-only matcher
-  #   # http://rubydoc.info/github/thoughtbot/shoulda-matchers/master/Shoulda/Matchers/ActiveRecord/HaveReadonlyAttributeMatcher
-  #   it { expect(asset).to have_readonly_attribute(:uuid) }
+    it 'calls the #extract_video_id_from_youtube_url method before saving' do
+      expect(test_tune).to callback(:extract_video_id_from_youtube_url).before(:save)
+    end
 
-  #   # Databse columns/indexes
-  #   # http://rubydoc.info/github/thoughtbot/shoulda-matchers/master/Shoulda/Matchers/ActiveRecord/HaveDbColumnMatcher
-  #   it { expect(user).to have_db_column(:political_stance).of_type(:string).with_options(default: 'undecided', null: false)
-  #   # http://rubydoc.info/github/thoughtbot/shoulda-matchers/master/Shoulda/Matchers/ActiveRecord:have_db_index
-  #   it { expect(user).to have_db_index(:email).unique(:true)
-  # end
+    it 'correctly saves only video_id part of the youtube_url' do
+      test_tune.save
+      p Tune.last.youtube_video_id
+      expect(Tune.last.youtube_video_id).to eq('dSCq7jTL7tQ')
+    end
 
-  # context "callbacks" do
-  #   # http://guides.rubyonrails.org/active_record_callbacks.html
-  #   # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
-
-  #   let(:user) { create(:user) }
-
-  #   it { expect(user).to callback(:send_welcome_email).after(:create) }
-  #   it { expect(user).to callback(:track_new_user_signup).after(:create) }
-  #   it { expect(user).to callback(:make_email_validation_ready!).before(:validation).on(:create) }
-  #   it { expect(user).to callback(:calculate_some_metrics).after(:save) }
-  #   it { expect(user).to callback(:update_user_count).before(:destroy) }
-  #   it { expect(user).to callback(:send_goodbye_email).before(:destroy) }
-  # end
+  end
 
   # describe "scopes" do
   #   # It's a good idea to create specs that test a failing result for each scope, but that's up to you
