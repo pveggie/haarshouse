@@ -18,6 +18,7 @@ class Tune < ActiveRecord::Base
                     }
 
 # == Scopes ===============================================================
+  scope :by_song, -> { order(:song_title) }
 
 # == Callbacks ============================================================
   before_save :extract_video_id_from_youtube_url

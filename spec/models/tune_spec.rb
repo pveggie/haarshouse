@@ -65,13 +65,47 @@ RSpec.describe Tune, type: :model do
 
     it 'correctly saves only video_id part of the youtube_url' do
       test_tune.save
-      p Tune.last.youtube_video_id
       expect(Tune.last.youtube_video_id).to eq('dSCq7jTL7tQ')
     end
 
   end
 
-  # describe "scopes" do
+  describe "scopes" do
+
+    before(:all) do
+      Tune.delete_all
+      song_details = [
+        { game_title: "Assassin's Creed",
+          song_title: "Ezio's Family",
+          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ" },
+        { game_title: "Zssassin's Creed",
+          song_title: "Azio's Family",
+          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tZ" },
+        { game_title: "Mssassin's Creed",
+          song_title: "Zzio's Family",
+          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td" },
+        ]
+
+        song_details.each do |song|
+          FactoryGirl.create(:tune,
+                            game_title: song[:game_title],
+                            song_title: song[:song_title],
+                            youtube_video_id: song[:youtube_video_id])
+        end
+    end
+
+  it '.by_song sorts videos from A-Z by song_title' do
+    song_titles = Tune.by_song.pluck(:song_title)
+    p song_titles
+    p song_titles.sort
+    expect(song_titles).to eq(song_titles.sort)
+  end
+
+  it '.by_game sorts videos from A-Z by game_title' do
+  end
+
+  it '.most_popular sorts videos to show the most viewed first' do
+  end
   #   # It's a good idea to create specs that test a failing result for each scope, but that's up to you
   #   it ".loved returns all votes with a score > 0" do
   #     product = create(:product)
@@ -82,7 +116,7 @@ RSpec.describe Tune, type: :model do
   #   it "has another scope that works" do
   #     expect(model.scope_name(conditions)).to eq(result_expected)
   #   end
-  # end
+  end
 
   # describe "public instance methods" do
   #   context "responds to its methods" do
