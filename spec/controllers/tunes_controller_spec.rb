@@ -109,7 +109,7 @@ RSpec.describe TunesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) { FactoryGirl.attributes_for(:tune, song_title: "New Song") }
-
+      before(:each) { Tune.destroy_all }
       it "updates the requested tune" do
         tune = Tune.create! valid_attributes
         put :update, {:id => tune.to_param, :tune => new_attributes}
@@ -126,7 +126,6 @@ RSpec.describe TunesController, type: :controller do
       it "redirects to the index" do
         tune = Tune.create! valid_attributes
         put :update, {:id => tune, :tune => valid_attributes}
-        tune.valid?
         expect(response).to redirect_to(tunes_path)
       end
     end
