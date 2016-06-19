@@ -33,6 +33,10 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   # https://github.com/jdliss/shoulda-callback-matchers
   gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :production do

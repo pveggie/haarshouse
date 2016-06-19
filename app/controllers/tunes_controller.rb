@@ -4,7 +4,7 @@ class TunesController < ApplicationController
   before_action :find_tune, only: [:edit, :update, :destroy]
 
   def index
-    @tunes = Tune.all
+    @tunes = params[:scope].nil? ? Tune.all : tunes_sorted(params[:scope])
   end
 
   def new
@@ -16,7 +16,7 @@ class TunesController < ApplicationController
     if @tune.save
       redirect_to tunes_path
     else
-      flash[:alert] = "Song not updated."
+      flash[:alert] = "Song not created."
       render :new
     end
   end
@@ -27,7 +27,7 @@ class TunesController < ApplicationController
       redirect_to tunes_path
     else
       flash[:alert] = "Song not updated."
-      render :new
+      render :edit
     end
   end
 
@@ -43,5 +43,8 @@ class TunesController < ApplicationController
 
   def tune_params
     params.require(:tune).permit(:game_title, :song_title, :youtube_video_id)
+  end
+
+  def tunes_sorted(scope)
   end
 end
