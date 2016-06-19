@@ -16,7 +16,7 @@ class TunesController < ApplicationController
     if @tune.save
       redirect_to tunes_path
     else
-      flash[:alert] = "Song not updated."
+      flash[:alert] = "Song not created."
       render :new
     end
   end
@@ -27,7 +27,7 @@ class TunesController < ApplicationController
       redirect_to tunes_path
     else
       flash[:alert] = "Song not updated."
-      render :new
+      render :edit
     end
   end
 

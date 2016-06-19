@@ -5,21 +5,12 @@ RSpec.describe TunesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Tune. As you add validations to Tune, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    {
-      game_title: "Dragon Age 2",
-      song_title: "Fenris Theme",
-      youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ"
-    }
-  end
+  #
+  let(:valid_attributes) { FactoryGirl.attributes_for(:tune) }
 
-  let(:invalid_attributes) do
-    {
-      game_title: nil,
-      song_title: "Fenris Theme",
-      youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ"
-    }
-  end
+
+  let(:invalid_attributes) { FactoryGirl.attributes_for(:tune, song_title: nil) }
+  after(:all) { Tune.delete_all }
 
   describe "GET #index" do
 
@@ -53,6 +44,11 @@ RSpec.describe TunesController, type: :controller do
       get :index, {}
       expect(assigns(:tunes).count).to eq(3)
     end
+
+    it "renders the index view" do
+      get :index, {}
+      expect(response).to render_template(:index)
+    end
   end
 
   describe "GET #new" do
@@ -74,46 +70,51 @@ RSpec.describe TunesController, type: :controller do
     context "with valid params" do
       it "creates a new Tune" do
         expect {
-          post :create, {:tune => valid_attributes}
+          post :create, tune: valid_attributes
         }.to change(Tune, :count).by(1)
       end
 
       it "assigns a newly created tune as @tune" do
         post :create, {:tune => valid_attributes}
         expect(assigns(:tune)).to be_a(Tune)
+      end
+
+      it "it saves the created @tune instance variable" do
+        post :create, {:tune => valid_attributes}
         expect(assigns(:tune)).to be_persisted
       end
 
-      it "redirects to the created tune" do
+      it "redirects to the index" do
         post :create, {:tune => valid_attributes}
-        expect(response).to redirect_to(Tune.last)
+        expect(response).to redirect_to(tunes_path)
       end
     end
 
     context "with invalid params" do
+    before(:each) { post :create, {:tune => invalid_attributes} }
       it "assigns a newly created but unsaved tune as @tune" do
-        post :create, {:tune => invalid_attributes}
         expect(assigns(:tune)).to be_a_new(Tune)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:tune => invalid_attributes}
-        expect(response).to render_template("new")
+        expect(response).to render_template(:new)
+      end
+
+      it "gives a flash fail message" do
+        expect(flash[:alert]).to eq "Song not created."
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { FactoryGirl.attributes_for(:tune, song_title: "New Song") }
 
       it "updates the requested tune" do
         tune = Tune.create! valid_attributes
         put :update, {:id => tune.to_param, :tune => new_attributes}
         tune.reload
-        skip("Add assertions for updated state")
+        expect(tune.song_title).to eq("New Song")
       end
 
       it "assigns the requested tune as @tune" do
@@ -122,24 +123,31 @@ RSpec.describe TunesController, type: :controller do
         expect(assigns(:tune)).to eq(tune)
       end
 
-      it "redirects to the tune" do
+      it "redirects to the index" do
         tune = Tune.create! valid_attributes
-        put :update, {:id => tune.to_param, :tune => valid_attributes}
-        expect(response).to redirect_to(tune)
+        put :update, {:id => tune, :tune => valid_attributes}
+        tune.valid?
+        expect(response).to redirect_to(tunes_path)
       end
     end
 
     context "with invalid params" do
       it "assigns the tune as @tune" do
         tune = Tune.create! valid_attributes
-        put :update, {:id => tune.to_param, :tune => invalid_attributes}
+        put :update, { id: tune, :tune => invalid_attributes}
         expect(assigns(:tune)).to eq(tune)
       end
 
       it "re-renders the 'edit' template" do
         tune = Tune.create! valid_attributes
         put :update, {:id => tune.to_param, :tune => invalid_attributes}
-        expect(response).to render_template("edit")
+        expect(response).to render_template(:edit)
+      end
+
+      it "gives a flash fail message" do
+        tune = Tune.create! valid_attributes
+        put :update, {:id => tune.to_param, :tune => invalid_attributes}
+        expect(flash[:alert]).to eq "Song not updated."
       end
     end
   end
@@ -155,7 +163,7 @@ RSpec.describe TunesController, type: :controller do
     it "redirects to the tunes list" do
       tune = Tune.create! valid_attributes
       delete :destroy, {:id => tune.to_param}
-      expect(response).to redirect_to(tunes_url)
+      expect(response).to redirect_to(tunes_path)
     end
   end
 
