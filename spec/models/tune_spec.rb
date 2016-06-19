@@ -3,6 +3,8 @@ require 'rails_helper'
 # Template: https://gist.github.com/kyletcarlson/6234923
 RSpec.describe Tune, type: :model do
 
+  before(:all) { Tune.destroy_all }
+
   it "has a valid factory" do
     expect(FactoryGirl.build(:tune)).to be_valid
   end
@@ -44,6 +46,11 @@ RSpec.describe Tune, type: :model do
 
     it 'is valid with a youtube_video_id as a partial containing the id' do
       expect(test_tune).to allow_value("youtube.com/watch?v=dSCq7jTL7tQ")
+                       .for(:youtube_video_id)
+    end
+
+    it 'is valid with a youtube_video_id containing only the id' do
+      expect(test_tune).to allow_value("dSCq7jTL7tZ")
                        .for(:youtube_video_id)
     end
 

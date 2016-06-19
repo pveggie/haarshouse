@@ -11,10 +11,11 @@ class Tune < ActiveRecord::Base
   validates :game_title, presence: true
   validates :song_title, presence: true, uniqueness: { scope: :game_title,
              message: "This song has already been added." }
+  # has to accept only the video id for update purposes
   validates :youtube_video_id, presence: true,
              uniqueness: { message: "This video has already been added." },
              format: {
-                      with: /.*youtu.*[=\/]([\w-]*)/, message: "Please check your youtube link."
+                      with: /.*youtu.*[=\/]([\w-]*)|[\w|-]{11}/, message: "Please check your youtube link."
                     }
 
 # == Scopes ===============================================================
@@ -28,6 +29,8 @@ class Tune < ActiveRecord::Base
 
 # == Instance Methods =====================================================
   def extract_video_id_from_youtube_url
+    #for update we just return what's already there
+    return if self.youtube_video_id.match(/^[\w-]{11}$/)
     self.youtube_video_id = youtube_video_id.match(/.*youtu.*[=\/]([\w-]*)/)[1]
   end
 
