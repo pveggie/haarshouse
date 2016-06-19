@@ -77,34 +77,40 @@ RSpec.describe Tune, type: :model do
       song_details = [
         { game_title: "Assassin's Creed",
           song_title: "Ezio's Family",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ" },
+          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ",
+          views: 0 },
         { game_title: "Zssassin's Creed",
           song_title: "Azio's Family",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tZ" },
+          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tZ",
+          views: 5 },
         { game_title: "Mssassin's Creed",
           song_title: "Zzio's Family",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td" },
+          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td",
+          views: 11 },
         ]
 
         song_details.each do |song|
           FactoryGirl.create(:tune,
                             game_title: song[:game_title],
                             song_title: song[:song_title],
-                            youtube_video_id: song[:youtube_video_id])
+                            youtube_video_id: song[:youtube_video_id],
+                            views: song[:views])
         end
     end
 
   it '.by_song sorts videos from A-Z by song_title' do
     song_titles = Tune.by_song.pluck(:song_title)
-    p song_titles
-    p song_titles.sort
     expect(song_titles).to eq(song_titles.sort)
   end
 
   it '.by_game sorts videos from A-Z by game_title' do
+    game_titles = Tune.by_game.pluck(:game_title)
+    expect(game_titles).to eq(game_titles.sort)
   end
 
-  it '.most_popular sorts videos to show the most viewed first' do
+  it '.most_viewed sorts videos to show the most viewed first' do
+    views = Tune.most_viewed.pluck(:views)
+    expect(views).to eq(views.sort)
   end
   #   # It's a good idea to create specs that test a failing result for each scope, but that's up to you
   #   it ".loved returns all votes with a score > 0" do
