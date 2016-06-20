@@ -19,8 +19,8 @@ class Tune < ActiveRecord::Base
                     }
 
 # == Scopes ===============================================================
-  scope :by_song, -> { order(:song_title) }
   scope :by_game, -> { order(:game_title) }
+  scope :by_song, -> { order(:song_title) }
   scope :most_viewed, -> { order(:views) }
 
 # == Callbacks ============================================================

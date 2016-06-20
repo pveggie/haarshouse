@@ -1,9 +1,14 @@
 .toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
+.toolbar-left {
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+}
 .toolbar-link {
   a {
     // color: $gray-lighter;

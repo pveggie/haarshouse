@@ -11,6 +11,21 @@
         <div class="row">
 
           <div class="toolbar">
+            <div class="toolbar-left">
+              <p> Sort tunes:
+              <%= form_tag("/tunes", method: "get", class: "toolbar-link") do %>
+                <%= hidden_field_tag(:song_scope, "by_game") %>
+                <%= submit_tag("By Game", class: "btn btn-sm btn-info") %>
+              <% end %>
+              <%= form_tag("/tunes", method: "get", class: "toolbar-link") do %>
+                <%= hidden_field_tag(:song_scope, "by_song") %>
+                <%= submit_tag("By Song", class: "btn btn-sm btn-info") %>
+              <% end %>
+              <%= form_tag("/tunes", method: "get", class: "toolbar-link") do %>
+                <%= hidden_field_tag(:song_scope, "most_viewed") %>
+                <%= submit_tag("Most Viewed", class: "btn btn-sm btn-info") %>
+              <% end %>
+            </div>
             <div class="toolbar-right toolbar-link">
               <%= link_to new_tune_path, class: "btn btn-sm btn-primary" do %>
                 <i class="fa fa-plus-square" aria-hidden="true"></i> Add Song
