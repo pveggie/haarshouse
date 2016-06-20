@@ -45,6 +45,8 @@ class TunesController < ApplicationController
     params.require(:tune).permit(:game_title, :song_title, :youtube_video_id)
   end
 
-  def tunes_sorted(scope)
+  def tunes_sorted(sort_scope)
+    sort_scope.downcase!
+    @tunes = Tune.send(sort_scope.to_sym)
   end
 end

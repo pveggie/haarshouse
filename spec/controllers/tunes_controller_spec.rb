@@ -49,6 +49,28 @@ RSpec.describe TunesController, type: :controller do
       get :index, {}
       expect(response).to render_template(:index)
     end
+
+    describe "sorting" do
+      it "assigns tunes in the default order when no sort is chosen" do
+        get :index, {}
+        expect(assigns(:tunes).map(&:song_title)).to eq(["Ezio's Family", "Azio's Family", "Zzio's Family"])
+      end
+
+      it "assigns tunes in A-Z game_title order when by_game is chosen" do
+        get :index, {scope: "by_game"}
+        expect(assigns(:tunes).map(&:game_title)).to eq(["Assassin's Creed", "Mssassin's Creed", "Zssassin's Creed"])
+      end
+
+      it "assigns tunes in A-Z song_title order when by_song is chosen" do
+        get :index, {song_scope: "by_song"}
+        expect(assigns(:tunes).map(&:song_title)).to eq(["Ezio's Family", "Azio's Family", "Zzio's Family"])
+      end
+
+      it "assigns tunes in view count order when most_viewed is chosen" do
+        get :index, {song_scope: "most_viewed"}
+        expect(assigns(:tunes).map(&:views)).to eq([0, 5, 11])
+      end
+    end
   end
 
   describe "GET #new" do
