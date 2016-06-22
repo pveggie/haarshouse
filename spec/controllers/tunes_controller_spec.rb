@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe TunesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Tune. As you add validations to Tune, be sure to
   # adjust the attributes here as well.
   #
   let(:valid_attributes) { FactoryGirl.attributes_for(:tune) }
-
-
   let(:invalid_attributes) { FactoryGirl.attributes_for(:tune, song_title: nil) }
   after(:all) { Tune.delete_all }
 
@@ -113,7 +110,7 @@ RSpec.describe TunesController, type: :controller do
     end
 
     context "with invalid params" do
-    before(:each) { post :create, {:tune => invalid_attributes} }
+      before(:each) { post :create, {:tune => invalid_attributes} }
       it "assigns a newly created but unsaved tune as @tune" do
         expect(assigns(:tune)).to be_a_new(Tune)
       end
@@ -132,6 +129,7 @@ RSpec.describe TunesController, type: :controller do
     context "with valid params" do
       let(:new_attributes) { FactoryGirl.attributes_for(:tune, song_title: "New Song") }
       before(:each) { Tune.destroy_all }
+
       it "updates the requested tune" do
         tune = Tune.create! valid_attributes
         put :update, {:id => tune.to_param, :tune => new_attributes}

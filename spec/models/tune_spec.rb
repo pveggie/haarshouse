@@ -2,7 +2,6 @@ require 'rails_helper'
 
 # Template: https://gist.github.com/kyletcarlson/6234923
 RSpec.describe Tune, type: :model do
-
   before(:all) { Tune.destroy_all }
 
   it "has a valid factory" do
@@ -63,7 +62,6 @@ RSpec.describe Tune, type: :model do
   context "callbacks" do
     # http://guides.rubyonrails.org/active_record_callbacks.html
     # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
-
     let(:test_tune) { FactoryGirl.create(:tune) }
 
     it 'calls the #extract_video_id_from_youtube_url method before saving' do
@@ -78,7 +76,6 @@ RSpec.describe Tune, type: :model do
   end
 
   describe "scopes" do
-
     before(:all) do
       Tune.delete_all
       song_details = [
@@ -105,20 +102,20 @@ RSpec.describe Tune, type: :model do
         end
     end
 
-  it '.by_song sorts videos from A-Z by song_title' do
-    song_titles = Tune.by_song.pluck(:song_title)
-    expect(song_titles).to eq(song_titles.sort)
-  end
+    it '.by_song sorts videos from A-Z by song_title' do
+      song_titles = Tune.by_song.pluck(:song_title)
+      expect(song_titles).to eq(song_titles.sort)
+    end
 
-  it '.by_game sorts videos from A-Z by game_title' do
-    game_titles = Tune.by_game.pluck(:game_title)
-    expect(game_titles).to eq(game_titles.sort)
-  end
+    it '.by_game sorts videos from A-Z by game_title' do
+      game_titles = Tune.by_game.pluck(:game_title)
+      expect(game_titles).to eq(game_titles.sort)
+    end
 
-  it '.most_viewed sorts videos to show the most viewed first' do
-    views = Tune.most_viewed.pluck(:views)
-    expect(views).to eq(views.sort)
-  end
+    it '.most_viewed sorts videos to show the most viewed first' do
+      views = Tune.most_viewed.pluck(:views)
+      expect(views).to eq(views.sort)
+    end
   #   # It's a good idea to create specs that test a failing result for each scope, but that's up to you
   #   it ".loved returns all votes with a score > 0" do
   #     product = create(:product)
