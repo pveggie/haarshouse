@@ -59,7 +59,7 @@ RSpec.describe Tune, type: :model do
   end
 
 
-  context "callbacks" do
+  describe "callbacks" do
     # http://guides.rubyonrails.org/active_record_callbacks.html
     # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
     let(:test_tune) { FactoryGirl.create(:tune) }

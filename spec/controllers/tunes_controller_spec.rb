@@ -7,10 +7,10 @@ RSpec.describe TunesController, type: :controller do
   #
   let(:valid_attributes) { FactoryGirl.attributes_for(:tune) }
   let(:invalid_attributes) { FactoryGirl.attributes_for(:tune, song_title: nil) }
+
   after(:all) { Tune.delete_all }
 
   describe "GET #index" do
-
     before(:all) do
       Tune.delete_all
       song_details = [
@@ -128,6 +128,7 @@ RSpec.describe TunesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) { FactoryGirl.attributes_for(:tune, song_title: "New Song") }
+
       before(:each) { Tune.destroy_all }
 
       it "updates the requested tune" do
