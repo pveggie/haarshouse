@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "tunes/new", type: :view do
-  before do
-    assign(:tune, Tune.new)
-  end
-
   let(:tune) { FactoryGirl.build_stubbed(:tune) }
+
+  before { assign(:tune, Tune.new) }
 
   it "renders new tune form" do
     render
