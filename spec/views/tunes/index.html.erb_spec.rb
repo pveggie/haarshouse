@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "tunes/index", type: :view do
-  before(:each) do
+  before do
     assign(:tunes, [
-      Tune.create!(),
-      Tune.create!()
+      FactoryGirl.build_stubbed(:tune), FactoryGirl.build_stubbed(:tune)
     ])
   end
 
