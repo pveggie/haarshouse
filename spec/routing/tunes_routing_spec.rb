@@ -11,10 +11,6 @@ RSpec.describe TunesController, type: :routing do
       expect(:get => "/tunes/new").to route_to("tunes#new")
     end
 
-    it "routes to #show" do
-      expect(:get => "/tunes/1").to route_to("tunes#show", :id => "1")
-    end
-
     it "routes to #edit" do
       expect(:get => "/tunes/1/edit").to route_to("tunes#edit", :id => "1")
     end
