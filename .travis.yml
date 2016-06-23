@@ -1,8 +1,8 @@
 language: ruby
 rvm:
-  - 2.3
+  - 2.2
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: "YOUR ENCRYPTED API KEY"
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: "YOUR ENCRYPTED API KEY"
