@@ -8,7 +8,7 @@ feature 'User plays tune' do
 
 
 
-  scenario 'with tune having valid youtube video id' do
+  scenario 'with tune having valid youtube video id', js: true do
     visit tunes_path
     within(:css, '.video-container') do
       expect(page).to_not have_css('iframe')
