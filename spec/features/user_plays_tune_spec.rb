@@ -4,16 +4,21 @@ feature 'User plays tune' do
   before(:all) do
     Tune.delete_all
     FactoryGirl.create(:tune)
-    visit tunes_path
   end
 
 
 
-  scenario 'with tune with correct youtube video id' do
+  scenario 'with tune having valid youtube video id', js: true do
+    visit tunes_path
     within(:css, '.video-container') do
+      expect(page).to_not have_css('iframe')
       find(:css, '.play-button').click
-      expect(page).to have_css('.video')
+      expect(page).to have_css('iframe')
+      # p find(:css, 'a', match: :first)
     end
+    # p has_content?('Rayman Legends OST')
+    # expect(page).to have_content('Rayman Legends OST')
+
   end
 
   # scenario 'with invalid email' do
