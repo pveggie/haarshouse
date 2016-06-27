@@ -6,9 +6,7 @@ feature 'User plays tune' do
     FactoryGirl.create(:tune)
   end
 
-
-
-  scenario 'with tune having valid youtube video id', js: true do
+  it "adds a youtube iframe when play button is clicked", js: true do
     visit tunes_path
     within(:css, '.video-container') do
       expect(page).to_not have_css('iframe')
@@ -16,6 +14,11 @@ feature 'User plays tune' do
       expect(page).to have_css('iframe')
       # p find(:css, 'a', match: :first)
     end
+  end
+
+  scenario 'with tune having valid youtube video id', js: true do
+
+
     # p has_content?('Rayman Legends OST')
     # expect(page).to have_content('Rayman Legends OST')
 
@@ -33,7 +36,7 @@ feature 'User plays tune' do
   #   expect(page).to have_content('Sign in')
   # end
 
-  # def sign_up_with(email, password)
+  # def play_video
   #   visit sign_up_path
   #   fill_in 'Email', with: email
   #   fill_in 'Password', with: password
