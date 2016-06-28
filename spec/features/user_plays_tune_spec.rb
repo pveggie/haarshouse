@@ -12,8 +12,14 @@ feature 'User plays tune' do
       expect(page).to_not have_css('iframe')
       find(:css, '.play-button').click
       expect(page).to have_css('iframe')
-      # p find(:css, 'a', match: :first)
+      # page.has_content?('Dragon Age II')
+      # save_and_open_page
+      # p find(:css, 'a', match: :first).value
+      # expect(page).to have_content('Dragon Age II')
+
     end
+    # page.has_css?('aria-label')
+    # assert_selector('aria-label')
   end
 
   scenario 'with tune having valid youtube video id', js: true do
