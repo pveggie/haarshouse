@@ -22,7 +22,6 @@ feature 'User edits tune' do
         find(:css, '.edit-button').click
       end
 
-
       # fill in form and submit
       expect(page).to have_field('Game title')
       fill_in 'Game title', :with => ""
@@ -44,34 +43,27 @@ feature 'User edits tune' do
   end
 
   context "With valid user input" do
-    scenario 'Adding first song' do
-      # go to add tunes form
-      visit tunes_path
-      click_link('Add Song')
-
-      # fill in form and submit
-      check_page_and_add_tune
-
-      # redirect to tunes index. song with correct id has been added
-      expect(page).to have_css('.video-container')
-      expect(page).to have_css('#dSCq7jTL7tQ')
-    end
-
-    # -- Songs for adding song when some already exist
-
-
-    scenario 'Adding a song when some exist already' do
+    scenario 'Editing a song with valid user input', js: true do
       # go to add tunes form. No videos exist
       visit tunes_path
-      expect(page).to have_css('.video-container', count: 3)
-      click_link('Add Song')
+      expect(page).to have_css('.video-container', count: 4)
+      # save_and_open_page
+
+      within(:css, '#container-dSCq7jTL7tQ') do
+        # find(:xpath, '//span[1]', match: :first).click
+        find(:css, '.edit-button').click
+      end
 
       # fill in form and submit
-      check_page_and_add_tune
+      expect(page).to have_field('Game title')
+      fill_in 'Game title', :with => "Dragon Age II"
+      click_button 'Update Tune'
 
-     # redirect to tunes index. song with correct id has been added
-      expect(page).to have_css('.video-container', count: 4)
-      expect(page).to have_css('#dSCq7jTL7tQ')
+      # redirected to index, tune updated
+      expect(page).to have_css('.video-container')
+      within(:css, '#container-dSCq7jTL7tQ') do
+        expect(page).to have_content('Dragon Age II - Fenris Theme')
+      end
     end
   end
 
