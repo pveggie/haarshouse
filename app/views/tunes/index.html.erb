@@ -36,40 +36,40 @@
           <div class="video-grid">
 
             <% @tunes.each do |tune| %>
-            <div class="col-xs-12 col-sm-4 video">
-              <div class="video-container">
-                <div class="video" id="<%= tune.youtube_video_id %>">
-                  <div class="play-button" data-video-id="<%= tune.youtube_video_id %>"></div>
-                </div>
-
-                <div class="icon icon-relative-top-right flex-row">
-                  <%= link_to edit_tune_path(tune) do %>
-                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                  <% end %>
-
-                  <%= link_to tune_path(tune), {method: :delete} do %>
-                  <i class="fa fa-trash"></i>
-                  <% end %>
-                </div>
-
-                <% unless tune.game_title.blank? && tune.song_title.blank? %>
-                <div class="caption">
-                  <div class="caption-text">
-                    <p><%= tune.game_title %> - <%= tune.song_title %>
-                    </div>
+              <div class="col-xs-12 col-sm-4 video">
+                <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
+                  <div class="video" id="<%= tune.youtube_video_id %>">
+                    <div class="play-button" data-video-id="<%= tune.youtube_video_id %>"></div>
                   </div>
+
+                  <div class="icon icon-relative-top-right flex-row">
+                    <%= link_to edit_tune_path(tune), class: "edit-button" do %>
+                      <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                    <% end %>
+
+                    <%= link_to tune_path(tune), {method: :delete} do %>
+                    <i class="fa fa-trash"></i>
+                    <% end %>
+                  </div>
+
+                  <% unless tune.game_title.blank? && tune.song_title.blank? %>
+                    <div class="caption">
+                      <div class="caption-text">
+                        <p><%= tune.game_title %> - <%= tune.song_title %></p>
+                      </div>
+                    </div>
                   <% end %>
                 </div>
               </div>
-              <% end %>
-
-            </div>
+            <% end %>
 
           </div>
-        </div>
 
+        </div>
       </div>
+
     </div>
   </div>
+</div>
 
 
