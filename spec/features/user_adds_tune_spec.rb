@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 feature 'User adds tune' do
+  let(:valid_data) { FactoryGirl.attributes_for(:tune) }
+  let(:invalid_data) { FactoryGirl.attributes_for(:tune, song_title: nil) }
 
   before(:all) { Tune.delete_all }
 
@@ -12,11 +14,7 @@ feature 'User adds tune' do
       click_link('Add Song')
 
       # fill in form and submit
-      expect(page).to have_field('Game title')
-      fill_in 'Game title', :with => "Dragon Age 2"
-      fill_in 'Song title', :with => "Fenris Theme"
-      fill_in 'Youtube video', :with => "blah"
-      click_button 'Create Tune'
+      check_page_and_add_tune(invalid_data)
 
       # fail and stay on add tune form
       expect(page).to have_field('Game title')
@@ -38,7 +36,7 @@ feature 'User adds tune' do
       click_link('Add Song')
 
       # fill in form and submit
-      check_page_and_add_tune
+      check_page_and_add_tune(valid_data)
 
       # redirect to tunes index. song with correct id has been added
       expect(page).to have_css('.video-container')
@@ -59,7 +57,7 @@ feature 'User adds tune' do
       click_link('Add Song')
 
       # fill in form and submit
-      check_page_and_add_tune
+      check_page_and_add_tune(valid_data)
 
      # redirect to tunes index. song with correct id has been added
       expect(page).to have_css('.video-container', count: 4)
@@ -67,11 +65,11 @@ feature 'User adds tune' do
     end
   end
 
-  def check_page_and_add_tune
+  def check_page_and_add_tune(data)
     expect(page).to have_field('Game title')
-    fill_in 'Game title', :with => "Dragon Age 2"
-    fill_in 'Song title', :with => "Fenris Theme"
-    fill_in 'Youtube video', :with => "youtube.com/watch?v=dSCq7jTL7tQ"
+    fill_in 'Game title', :with => data[:game_title]
+    fill_in 'Song title', :with => data[:song_title]
+    fill_in 'Youtube video', :with => data[:youtube_video_id]
     click_button 'Create Tune'
   end
 end
