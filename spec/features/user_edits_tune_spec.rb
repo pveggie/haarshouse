@@ -1,22 +1,32 @@
 require 'rails_helper'
 
-feature 'User adds tune' do
+feature 'User edits tune' do
 
-  before(:all) { Tune.delete_all }
+  before(:all) do
+      Tune.delete_all
+      FactoryGirl.create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
+      FactoryGirl.create(:tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab")
+      FactoryGirl.create(:tune, game_title: "c", song_title: "c", youtube_video_id: "aaaaaaaaaac")
+      FactoryGirl.create(:tune)
+  end
 
   context "with invalid user input" do
-    scenario 'Adding a song with invalid user input' do
+    scenario 'Editing a song with invalid user input', js: true do
       # go to add tunes form. No videos exist
       visit tunes_path
-      expect(page).to_not have_css('.video-container')
-      click_link('Add Song')
+      expect(page).to have_css('.video-container', count: 4)
+      # save_and_open_page
+
+      within(:css, '#container-dSCq7jTL7tQ') do
+        # find(:xpath, '//span[1]', match: :first).click
+        find(:css, '.edit-button').click
+      end
+
 
       # fill in form and submit
       expect(page).to have_field('Game title')
-      fill_in 'Game title', :with => "Dragon Age 2"
-      fill_in 'Song title', :with => "Fenris Theme"
-      fill_in 'Youtube video', :with => "blah"
-      click_button 'Create Tune'
+      fill_in 'Game title', :with => ""
+      click_button 'Update Tune'
 
       # fail and stay on add tune form
       expect(page).to have_field('Game title')
@@ -25,9 +35,11 @@ feature 'User adds tune' do
       #   expect(page).to have_content("Song not created.")
       # end
 
-      # go back to index. no tune has been added
+      # go back to index. tune not updated
       visit tunes_path
-      expect(page).to_not have_css('.video-container')
+      within(:css, '#container-dSCq7jTL7tQ') do
+        expect(page).to have_content('Dragon Age 2 - Fenris Theme')
+      end
     end
   end
 
@@ -46,11 +58,7 @@ feature 'User adds tune' do
     end
 
     # -- Songs for adding song when some already exist
-    before do
-      FactoryGirl.create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
-      FactoryGirl.create(:tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab")
-      FactoryGirl.create(:tune, game_title: "c", song_title: "c", youtube_video_id: "aaaaaaaaaac")
-    end
+
 
     scenario 'Adding a song when some exist already' do
       # go to add tunes form. No videos exist
@@ -65,6 +73,10 @@ feature 'User adds tune' do
       expect(page).to have_css('.video-container', count: 4)
       expect(page).to have_css('#dSCq7jTL7tQ')
     end
+  end
+
+  def select_song_to_edit
+
   end
 
   def check_page_and_add_tune
