@@ -10,22 +10,17 @@ feature 'User edits tune' do
       FactoryGirl.create(:tune)
   end
 
+  # capybara can't find the edit button without js for some reason.
+  # need to investigate. might also be the reason why it can't see some of the
+  # stuff in the index page...
   context "with invalid user input" do
     scenario 'Editing a song with invalid user input', js: true do
       # go to add tunes form. No videos exist
       visit tunes_path
       expect(page).to have_css('.video-container', count: 4)
-      # save_and_open_page
 
-      within(:css, '#container-dSCq7jTL7tQ') do
-        # find(:xpath, '//span[1]', match: :first).click
-        find(:css, '.edit-button').click
-      end
-
-      # fill in form and submit
-      expect(page).to have_field('Game title')
-      fill_in 'Game title', :with => ""
-      click_button 'Update Tune'
+      select_song_to_edit
+      check_page_and_update_song_title("")
 
       # fail and stay on add tune form
       expect(page).to have_field('Game title')
@@ -49,15 +44,8 @@ feature 'User edits tune' do
       expect(page).to have_css('.video-container', count: 4)
       # save_and_open_page
 
-      within(:css, '#container-dSCq7jTL7tQ') do
-        # find(:xpath, '//span[1]', match: :first).click
-        find(:css, '.edit-button').click
-      end
-
-      # fill in form and submit
-      expect(page).to have_field('Game title')
-      fill_in 'Game title', :with => "Dragon Age II"
-      click_button 'Update Tune'
+      select_song_to_edit
+      check_page_and_update_song_title("Dragon Age II")
 
       # redirected to index, tune updated
       expect(page).to have_css('.video-container')
@@ -68,14 +56,15 @@ feature 'User edits tune' do
   end
 
   def select_song_to_edit
-
+    within(:css, '#container-dSCq7jTL7tQ') do
+      # find(:xpath, '//span[1]', match: :first).click
+      find(:css, '.edit-button').click
+    end
   end
 
-  def check_page_and_add_tune
+  def check_page_and_update_song_title(new_title)
     expect(page).to have_field('Game title')
-    fill_in 'Game title', :with => "Dragon Age 2"
-    fill_in 'Song title', :with => "Fenris Theme"
-    fill_in 'Youtube video', :with => "youtube.com/watch?v=dSCq7jTL7tQ"
-    click_button 'Create Tune'
+    fill_in 'Game title', with: new_title
+    click_button 'Update Tune'
   end
 end
