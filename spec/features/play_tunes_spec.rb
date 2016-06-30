@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User plays tune' do
+feature 'Play tunes' do
   before(:all) do
     Tune.delete_all
     FactoryGirl.create(:tune)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User edits tune' do
+feature 'Edit tunes' do
 
   before(:all) do
       Tune.delete_all
