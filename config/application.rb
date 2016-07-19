@@ -22,5 +22,8 @@ module Haarshouse
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # include stuff from lib without having to require it
+    # config.autoload_paths += %W(#{config.root}/lib)
   end
 end
