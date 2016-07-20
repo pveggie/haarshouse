@@ -40,6 +40,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'webmock'
 end
 
 group :production do
