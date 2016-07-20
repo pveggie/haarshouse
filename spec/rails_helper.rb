@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
+
 # require 'capybara/poltergeist'
 
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -66,6 +67,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+
 
 # Capybara.register_driver :poltergeist do |app|
 #   Capybara::Poltergeist::Driver.new(app, js_errors: false)
