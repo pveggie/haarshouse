@@ -1,8 +1,10 @@
 language: ruby
 rvm:
-  - 2.2
-
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: "YOUR ENCRYPTED API KEY"
+- 2.3
+deploy:
+  provider: heroku
+  api_key:
+    secure: iv1JX8ga5hJsRUbr9qi0vJGQQ1kY/uB67nNtdtDU+1WupWdcjv4QCB1w/np9syIkxo8OxFmXZw3vRln90u80Yiepw6P13QFPZcHdfvxonvsajiXHB/i/xDBjT7eaZC7o+AnBjTDKDW/vgKpV9z8MAzPiGAiyDU8bQ5H+/u0iSRhTxvn4enzEkeV8U7GDahdQ2Xf/Yq7gho3SoCx79Gv3yztvZEQ3/Y+n3UYQbW/3Is8z5FRqVFOO5zPjV8Rfqgm8jY721zAJriGdr2jgk9SGMh1KklghveM/DMkIGG/hQ5PYm5P8uxepUzq3wD2OQ3yOzfHDheesIXDfCSc5ALxETb2UgDrr+j+VyoF1TYFVIGhelJWEm37ePT4fwf0DhZG9eI2hDFSDZlIt7jDkcvH6HbCCt9dHO1klOozWYordWGwIr0y4SLT3NZBwWzDR4HzgekQt8wn5e7PLUretycTMybJljIVOb3cn7QC0Cza47xABNiGnmY39q8mEuGwRpZipGBE1zYiBikEwly2zymKUUkQZ8nz+Pt3yF6Truf1e2J8mIp23vkm/wvvYahjN0XukL3zb2uR16/JSuw4Bnx/7ELWUy/ngF5UeWhDZWIkkyrmU5s4rPDP0gMRAzIREl9mtTOemXmp3g79wzktQM4V2cVkFEB3Rdc3J0j1qa6o2XL8=
+  app: haarshouseoftunes
+  on:
+    repo: pveggie/haarshouse
