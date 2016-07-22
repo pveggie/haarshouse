@@ -1,3 +1,8 @@
+PATH
+  remote: ~/code/pveggie/haar_joke
+  specs:
+    haar_joke (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -264,6 +269,7 @@ DEPENDENCIES
   figaro
   font-awesome-sass
   guard-rspec
+  haar_joke!
   jbuilder (~> 2.0)
   jquery-rails
   launchy
