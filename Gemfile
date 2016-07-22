@@ -15,7 +15,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-gem 'haar_joke'
+gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 
 group :development, :test do
   gem 'binding_of_caller'
