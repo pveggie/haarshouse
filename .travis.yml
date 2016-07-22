@@ -1,16 +1,12 @@
-# language: ruby
-# rvm:
-# - 2.2.0
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: ZjHB73uGCy7tOortVsrAGL5jbop5s3LfCOTveAlFqGv7V5IJ2BJSpL/7VUmGtEVZpisRb1D/Ac2a9GPUEdV33FXaog721H6Ymfl5z3+5zsO+OA1NbFOWQA5GTIJlATz1HHofY4UD6o41t0Y9Mh+Hom+YXk0JAW/O0Ud0atbFoiMNj6U7Zjj+kiGROtaJGRNf2TwB/84qswbl2cCtnNzQqvNmXPBj/sOKxO37wldtkup/B7nrunpbqUgSY8juPqyzgkl6sCGDV79eydjPKacN8lX3z6iQwyu3/zdXgw15Hr6fTpLuvxkjPTP3Og4SIVJYleuN5w8zywqo4StOrTypGxLSVJE+g2lAtWHhCY8rhJD70VecMPzBdNxB5M1viZ0CxvHnEVoC6TMEI1eMiAW5IpzF0D0jhCuxk83HqiNPyJoqMGUG/4Rz3SbdZ4epIipom7K2QKCrFzIb9IsQ7tkqkXnDwUl0ry/cdE3WdBn1KqwUW7/8OkYy5q+UOswK63lxorXHNphAK91jOkcRBecK2YdL8SX+jk94V1nvx/TiAnHICz+wFgq1RtMB/BKshuYlU9s9IHqnbtZ5sHqktYB4KcvwqZA00f3QvYIiFONC6uI/u2dcRni2NwKCKtL3Q5fQk6vcagkuQqSn/diEmYYWLu+p9rddMEAfMQJ068fMllc=
-#   app: haarshouseoftunes
-#   on:
-#     repo: pveggie/haarshouse
-
 sudo: false
 language: ruby
 rvm:
   - 2.3.0
 before_install: gem install bundler -v 1.12.5
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZjHB73uGCy7tOortVsrAGL5jbop5s3LfCOTveAlFqGv7V5IJ2BJSpL/7VUmGtEVZpisRb1D/Ac2a9GPUEdV33FXaog721H6Ymfl5z3+5zsO+OA1NbFOWQA5GTIJlATz1HHofY4UD6o41t0Y9Mh+Hom+YXk0JAW/O0Ud0atbFoiMNj6U7Zjj+kiGROtaJGRNf2TwB/84qswbl2cCtnNzQqvNmXPBj/sOKxO37wldtkup/B7nrunpbqUgSY8juPqyzgkl6sCGDV79eydjPKacN8lX3z6iQwyu3/zdXgw15Hr6fTpLuvxkjPTP3Og4SIVJYleuN5w8zywqo4StOrTypGxLSVJE+g2lAtWHhCY8rhJD70VecMPzBdNxB5M1viZ0CxvHnEVoC6TMEI1eMiAW5IpzF0D0jhCuxk83HqiNPyJoqMGUG/4Rz3SbdZ4epIipom7K2QKCrFzIb9IsQ7tkqkXnDwUl0ry/cdE3WdBn1KqwUW7/8OkYy5q+UOswK63lxorXHNphAK91jOkcRBecK2YdL8SX+jk94V1nvx/TiAnHICz+wFgq1RtMB/BKshuYlU9s9IHqnbtZ5sHqktYB4KcvwqZA00f3QvYIiFONC6uI/u2dcRni2NwKCKtL3Q5fQk6vcagkuQqSn/diEmYYWLu+p9rddMEAfMQJ068fMllc=
+  app: haarshouseoftunes
+  on:
+    repo: pveggie/haarshouse
