@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Add tunes' do
+RSpec.feature 'Add tunes' do
   let(:valid_data) { FactoryGirl.attributes_for(:tune) }
   let(:invalid_data) { FactoryGirl.attributes_for(:tune, song_title: nil) }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Delete tunes' do
+RSpec.feature 'Delete tunes' do
   before(:all) do
       Tune.delete_all
       FactoryGirl.create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Sort tunes in index' do
+RSpec.feature 'Sort tunes in index' do
 
   before(:all) do
       Tune.delete_all

@@ -5,10 +5,11 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-require 'capybara/rspec'
-require 'haar_joke'
 
-# require 'capybara/poltergeist'
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+
+require 'haar_joke'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -71,17 +72,17 @@ end
 
 
 
-# Capybara.register_driver :poltergeist do |app|
-#   Capybara::Poltergeist::Driver.new(app, js_errors: false)
-# end
-
-# Capybara.javascript_driver = :poltergeist
-
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :poltergeist
+
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
+
+# Capybara.javascript_driver = :chrome
 
 # Capybara.javascript_driver = :webkit
 

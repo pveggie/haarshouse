@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Play tunes' do
+RSpec.feature 'Play tunes' do
   before(:all) do
     Tune.delete_all
     FactoryGirl.create(:tune)
