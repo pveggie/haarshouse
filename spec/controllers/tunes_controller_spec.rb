@@ -5,15 +5,12 @@ RSpec.describe TunesController, type: :controller do
   # Tune. As you add validations to Tune, be sure to
   # adjust the attributes here as well.
   #
-  let(:valid_attributes) { FactoryGirl.attributes_for(:tune) }
-  let(:invalid_attributes) { FactoryGirl.attributes_for(:tune, song_title: nil) }
-
-  after(:all) { Tune.delete_all }
+  let(:valid_attributes) { attributes_for(:tune) }
+  let(:invalid_attributes) { attributes_for(:tune, song_title: nil) }
 
   describe "GET #index" do
     before(:all) do
-      Tune.delete_all
-      song_details = [
+      song_library = [
         { game_title: "Assassin's Creed",
           song_title: "Ezio's Family",
           youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ",
@@ -25,11 +22,10 @@ RSpec.describe TunesController, type: :controller do
         { game_title: "Mssassin's Creed",
           song_title: "Zzio's Family",
           youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td",
-          views: 11 },
-        ]
-
-      song_details.each do |song|
-        FactoryGirl.create(:tune,
+          views: 11 }
+      ]
+      song_library.each do |song|
+        create(:tune,
                           game_title: song[:game_title],
                           song_title: song[:song_title],
                           youtube_video_id: song[:youtube_video_id],
@@ -127,7 +123,7 @@ RSpec.describe TunesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { FactoryGirl.attributes_for(:tune, song_title: "New Song") }
+      let(:new_attributes) { attributes_for(:tune, song_title: "New Song") }
 
       before(:each) { Tune.destroy_all }
 

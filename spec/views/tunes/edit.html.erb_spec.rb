@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "tunes/edit", type: :view do
-  before { @tune = assign(:tune, FactoryGirl.build_stubbed(:tune)) }
+  before { @tune = assign(:tune, build_stubbed(:tune)) }
 
   it "renders the edit tune form" do
     render
