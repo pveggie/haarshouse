@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature 'Delete tunes' do
-  before(:all) do
-      Tune.delete_all
-      FactoryGirl.create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
-      FactoryGirl.create(:tune)
+  background do
+      create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
+      create(:tune)
   end
 
   scenario 'user can use delete button to delete song', js: true do
@@ -13,7 +12,6 @@ RSpec.feature 'Delete tunes' do
     expect(page).to have_css('.video-container', count: 2)
 
     within(:css, '#container-dSCq7jTL7tQ') do
-      # find(:xpath, '//span[1]', match: :first).click
       find(:css, '.delete-button').click
     end
 

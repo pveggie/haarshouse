@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "tunes/new", type: :view do
-  let(:tune) { FactoryGirl.build_stubbed(:tune) }
+  let(:tune) { build_stubbed(:tune) }
 
   before { assign(:tune, Tune.new) }
 
@@ -24,6 +24,5 @@ RSpec.describe "tunes/new", type: :view do
     it "has an input field for youtube_video_id" do
       assert_select "input#tune_youtube_video_id[name=?]", "tune[youtube_video_id]"
     end
-
   end
 end

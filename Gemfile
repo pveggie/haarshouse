@@ -38,6 +38,7 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'database_cleaner'
   # gem 'capybara-webkit'
   # gem 'selenium-webdriver'
   gem 'guard-rspec'

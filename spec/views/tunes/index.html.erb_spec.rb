@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "tunes/index", type: :view do
   before do
     assign(:tunes, [
-      FactoryGirl.build_stubbed(:tune), FactoryGirl.build_stubbed(:tune)
+      build_stubbed(:tune),
+      build_stubbed(:tune)
     ])
   end
 

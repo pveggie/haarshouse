@@ -5,11 +5,11 @@ RSpec.describe Tune, type: :model do
   before(:all) { Tune.destroy_all }
 
   it "has a valid factory" do
-    expect(FactoryGirl.build(:tune)).to be_valid
+    expect(build(:tune)).to be_valid
   end
 
   describe 'ActiveRecord valiations' do
-    let(:test_tune) { FactoryGirl.build(:tune) }
+    let(:test_tune) { build(:tune) }
 
     # it { expect(test_tune).to validate_presence_of(:game_title)}
     # template uses short hand but I'm writing everything out in full
@@ -62,7 +62,7 @@ RSpec.describe Tune, type: :model do
   describe "callbacks" do
     # http://guides.rubyonrails.org/active_record_callbacks.html
     # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
-    let(:test_tune) { FactoryGirl.create(:tune) }
+    let(:test_tune) { create(:tune) }
 
     it 'calls the #extract_video_id_from_youtube_url method before saving' do
       expect(test_tune).to callback(:extract_video_id_from_youtube_url).before(:save)
@@ -94,7 +94,7 @@ RSpec.describe Tune, type: :model do
         ]
 
         song_details.each do |song|
-          FactoryGirl.create(:tune,
+          create(:tune,
                             game_title: song[:game_title],
                             song_title: song[:song_title],
                             youtube_video_id: song[:youtube_video_id],
