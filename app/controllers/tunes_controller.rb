@@ -1,10 +1,12 @@
+# Actions for adding, removing and editing youtube songs.
 class TunesController < ApplicationController
   require 'json'
   require 'open-uri'
   before_action :find_tune, only: [:edit, :update, :destroy]
 
   def index
-    @tunes = params[:scope].nil? ? Tune.all : tunes_sorted(params[:scope])
+    @tunes = params[:sort_scope].nil? ? Tune.all : tunes_sorted(params[:sort_scope])
+    p params
   end
 
   def new
@@ -37,6 +39,7 @@ class TunesController < ApplicationController
   end
 
   private
+
   def find_tune
     @tune = Tune.find(params[:id])
   end
@@ -47,6 +50,6 @@ class TunesController < ApplicationController
 
   def tunes_sorted(sort_scope)
     sort_scope.downcase!
-    @tunes = Tune.send(sort_scope.to_sym)
+    Tune.send(sort_scope.to_sym)
   end
 end

@@ -25,7 +25,7 @@ RSpec.describe TunesController, type: :controller do
           views: 11 }
       ]
       song_library.each do |song|
-        build(:tune,
+        create(:tune,
                           game_title: song[:game_title],
                           song_title: song[:song_title],
                           youtube_video_id: song[:youtube_video_id],

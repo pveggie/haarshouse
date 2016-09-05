@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Sorting tunes in index' do
   # Not going to change any of the data for these tests.
   background(:all) do
+    Tune.destroy_all
     create(:tune, game_title: "Zzzzz")
     create(:tune, game_title: "gamea", song_title: "songb", youtube_video_id: "aaaaaaaaaaa", views: 0)
     create(:tune, game_title: "gameb", song_title: "songa", youtube_video_id: "aaaaaaaaaab", views: 5)
