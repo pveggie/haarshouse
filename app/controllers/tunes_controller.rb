@@ -2,7 +2,7 @@
 class TunesController < ApplicationController
   require 'json'
   require 'open-uri'
-  before_action :find_tune, only: [:edit, :update, :destroy]
+  before_action :find_tune, only: [:show, :edit, :update, :destroy]
 
   def index
     @tunes = params[:sort_scope].nil? ? Tune.all : tunes_sorted(params[:sort_scope])
@@ -10,6 +10,15 @@ class TunesController < ApplicationController
 
   def new
     @tune = Tune.new
+  end
+
+  def show
+    @tune.views += 1
+    @tune.save
+    respond_to do |format|
+      format.html { redirect_to tunes_path}
+      format.js
+    end
   end
 
   def create
