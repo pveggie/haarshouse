@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 language: ruby
 rvm:
   - 2.3.0
@@ -14,9 +14,9 @@ test:
   adapter: postgresql
   database: Haarshouse_test
 
-# script:
-#   - export RAILS_ENV=test
-#   - bundle exec rake db:create db:migrate
+script:
+  - export RAILS_ENV=test
+  - bundle exec rake db:create db:migrate
 
 deploy:
   provider: heroku
