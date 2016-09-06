@@ -27,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   # https://github.com/thoughtbot/factory_girl_rails
   gem 'factory_girl_rails'
+  gem 'webmock'
 end
 
 group :test do
@@ -42,7 +43,6 @@ group :test do
   # gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
-  gem 'webmock'
 end
 
 group :production do

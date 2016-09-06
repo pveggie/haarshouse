@@ -1,3 +1,6 @@
+require 'webmock'
+include WebMock::API
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -38,4 +41,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # stubs out http requests to icndb in development mode
+  WebMock.enable!
+  WebMock.disable_net_connect!(allow: /youtube/, allow_localhost: true )
 end
