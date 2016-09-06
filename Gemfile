@@ -4,13 +4,12 @@ ruby '2.3.0'
 gem 'rails', '4.2.6'
 gem 'puma'
 gem 'pg'
-gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
 
 gem 'sass-rails'
 gem 'jquery-rails'
-gem 'uglifier'
+gem 'uglifier' #minifies javascript
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
@@ -28,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   # https://github.com/thoughtbot/factory_girl_rails
   gem 'factory_girl_rails'
+  gem 'webmock'
 end
 
 group :test do
@@ -43,7 +43,6 @@ group :test do
   # gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
-  gem 'webmock'
 end
 
 group :production do
