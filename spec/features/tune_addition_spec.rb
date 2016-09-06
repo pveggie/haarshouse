@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Add tunes' do
+RSpec.feature 'Tune addition' do
   given(:valid_data) { attributes_for(:tune) }
   given(:invalid_data) { attributes_for(:tune, song_title: nil) }
 

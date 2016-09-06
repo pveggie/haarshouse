@@ -9,6 +9,8 @@ RSpec.describe TunesController, type: :controller do
   let(:invalid_attributes) { attributes_for(:tune, song_title: nil) }
 
   describe "GET #index" do
+    after(:all) { Tune.destroy_all }
+
     before(:all) do
       song_library = [
         { game_title: "Assassin's Creed",
@@ -43,25 +45,25 @@ RSpec.describe TunesController, type: :controller do
       expect(response).to render_template(:index)
     end
 
-    describe "sorting" do
+    describe "sorting", sorting: true do
       it "assigns tunes in the default order when no sort is chosen" do
         get :index, {}
         expect(assigns(:tunes).map(&:song_title)).to eq(["Ezio's Family", "Azio's Family", "Zzio's Family"])
       end
 
       it "assigns tunes in A-Z game_title order when by_game is chosen" do
-        get :index, {scope: "by_game"}
+        get :index, {sort_scope: "by_game"}
         expect(assigns(:tunes).map(&:game_title)).to eq(["Assassin's Creed", "Mssassin's Creed", "Zssassin's Creed"])
       end
 
       it "assigns tunes in A-Z song_title order when by_song is chosen" do
-        get :index, {song_scope: "by_song"}
-        expect(assigns(:tunes).map(&:song_title)).to eq(["Ezio's Family", "Azio's Family", "Zzio's Family"])
+        get :index, {sort_scope: "by_song"}
+        expect(assigns(:tunes).map(&:song_title)).to eq(["Azio's Family", "Ezio's Family", "Zzio's Family"])
       end
 
       it "assigns tunes in view count order when most_viewed is chosen" do
-        get :index, {song_scope: "most_viewed"}
-        expect(assigns(:tunes).map(&:views)).to eq([0, 5, 11])
+        get :index, {sort_scope: "most_viewed"}
+        expect(assigns(:tunes).map(&:views)).to eq([11,5,0])
       end
     end
   end
@@ -124,8 +126,6 @@ RSpec.describe TunesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) { attributes_for(:tune, song_title: "New Song") }
-
-      before(:each) { Tune.destroy_all }
 
       it "updates the requested tune" do
         tune = Tune.create! valid_attributes

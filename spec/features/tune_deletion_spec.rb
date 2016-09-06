@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature 'Delete tunes' do
+RSpec.feature 'Tune deletion' do
   background do
-      Tune.destroy_all
       create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
       create(:tune)
   end
