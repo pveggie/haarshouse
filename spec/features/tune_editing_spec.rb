@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Edit tunes' do
+RSpec.feature 'Tune editing' do
   background do
     create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
     create(:tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab")

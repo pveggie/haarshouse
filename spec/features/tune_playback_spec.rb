@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Play tunes' do
+RSpec.feature 'Tune playback' do
   background do
     create(:tune)
   end

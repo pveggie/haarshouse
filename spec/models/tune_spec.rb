@@ -77,20 +77,20 @@ RSpec.describe Tune, type: :model do
     end
   end
 
-  describe "scopes" do
+  describe "scopes", sorting: true do
     after(:all) { Tune.destroy_all }
 
     before(:all) do
       song_details = [
         { game_title: "Assassin's Creed",
-          song_title: "Ezio's Family",
+          song_title: "ezio's Family",
           youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ",
           views: 0 },
         { game_title: "Zssassin's Creed",
           song_title: "Azio's Family",
           youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tZ",
           views: 5 },
-        { game_title: "Mssassin's Creed",
+        { game_title: "mssassin's Creed",
           song_title: "Zzio's Family",
           youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td",
           views: 11 }
@@ -109,17 +109,20 @@ RSpec.describe Tune, type: :model do
 
     it '.by_song sorts videos from A-Z by song_title' do
       song_titles = Tune.by_song.pluck(:song_title)
-      expect(song_titles).to eq(song_titles.sort)
+      expect(song_titles)
+        .to eq(song_titles.sort {|a, b| a.downcase <=> b.downcase })
     end
 
     it '.by_game sorts videos from A-Z by game_title' do
       game_titles = Tune.by_game.pluck(:game_title)
-      expect(game_titles).to eq(game_titles.sort)
+      expect(game_titles)
+      .to eq(game_titles.sort {|a, b| a.downcase <=> b.downcase })
     end
 
-    it '.most_viewed sorts videos to show the most viewed first' do
+    it '.most_viewed sorts videos to show the most viewed first (descending)' do
       views = Tune.most_viewed.pluck(:views)
-      expect(views).to eq(views.sort)
+      expect(views)
+      .to eq(views.sort { |a, b| b <=> a })
     end
   end
 end
