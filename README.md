@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates)
+https://travis-ci.org/pveggie/haarshouse.svg?branch=master
+
+Library of youtube videos from video games.
