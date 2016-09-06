@@ -6,7 +6,8 @@ rvm:
 
 services:
   - postgresql
-  before_script:
+
+before_script:
   - psql -c 'create database haarshouse_test;' -U postgres
 
 test:
