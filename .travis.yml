@@ -14,6 +14,10 @@ test:
   adapter: postgresql
   database: Haarshouse_test
 
+script:
+  - export RAILS_ENV=test
+  - bundle exec rake db:create db:migrate
+
 deploy:
   provider: heroku
   api_key:
