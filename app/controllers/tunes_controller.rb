@@ -16,7 +16,10 @@ class TunesController < ApplicationController
     @tune.views += 1
     @tune.save
     respond_to do |format|
-      format.html { redirect_to tunes_path}
+      format.html do
+        flash[:alert] = "JavaScript needs to be enabled to play videos."
+        redirect_to tunes_path
+      end
       format.js
     end
   end

@@ -40,6 +40,7 @@
                 <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
                   <div class="video" id="<%= tune.youtube_video_id %>">
                     <%= link_to(tune_path(tune), remote: true, class: 'play-button') do %>
+                      <div data-video-id="<%= tune.youtube_video_id%>"></div>
                     <% end %>
                   </div>
 

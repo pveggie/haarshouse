@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "tunes/index", type: :view do
+RSpec.describe "tunes/index", type: :view, sorting: true, viewing: true do
   before do
     assign(
       :tunes, [build_stubbed(:tune), build_stubbed(:tune)]

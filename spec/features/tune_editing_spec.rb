@@ -1,16 +1,18 @@
 require 'rails_helper'
 
-RSpec.feature 'Tune editing' do
+RSpec.feature 'Tune editing', editing: true do
   background do
-    create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
-    create(:tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab")
-    create(:tune, game_title: "c", song_title: "c", youtube_video_id: "aaaaaaaaaac")
+    create(
+      :tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa"
+    )
+    create(
+      :tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab"
+    )
+    create(
+      :tune, game_title: "c", song_title: "c", youtube_video_id: "aaaaaaaaaac"
+    )
     create(:tune)
   end
-
-  # capybara can't find the edit button without js for some reason.
-  # need to investigate. might also be the reason why it can't see some of the
-  # stuff in the index page...
 
   scenario 'Editing a song with invalid user input', js: true do
     # go to add tunes form. No videos exist

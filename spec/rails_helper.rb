@@ -82,18 +82,6 @@ RSpec.configure do |config|
   config.append_after(:each) do
     DatabaseCleaner.clean
   end
-  #-- Webmock ----------------------------------------------------------
-  WebMock.disable_net_connect!(allow: /youtube/, allow_localhost: true )
-
-  RSpec.configure do |config|
-    config.before(:each) do
-      stub_request(:get, /icndb.com/).
-          to_return(status: 200, body: "Chuck Norris is sleeping", headers: {})
-    end
-  end
-
-  # -- Factory Girl ---------------------------------------------------
-  config.include FactoryGirl::Syntax::Methods
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -114,8 +102,25 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # Use expect syntax rather than should
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+  # -- Factory Girl ---------------------------------------------------
+  config.include FactoryGirl::Syntax::Methods
 end
 
+#-- Webmock ----------------------------------------------------------
+WebMock.disable_net_connect!(allow: /youtube/, allow_localhost: true)
+
+RSpec.configure do |config|
+  config.before(:each) do
+    stub_request(:get, /icndb.com/)
+      .to_return(status: 200, body: "Chuck Norris is sleeping", headers: {})
+  end
+end
+
+# Matchers
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     # Choose a test framework:
@@ -124,6 +129,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+# JS driver
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
