@@ -10,7 +10,7 @@ RSpec.feature 'Tune playback', playing: true do
 
     within(:css, '.video-container') do
       expect(page).to_not have_css('iframe')
-      find(:css, '.play-button').click
+      find(:css, '.play-button').trigger('click')
       expect(page).to have_css('iframe')
     end
   end
