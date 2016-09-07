@@ -75,6 +75,21 @@ RSpec.describe TunesController, type: :controller do
     end
   end
 
+  describe "GET #show", viewing: true do
+    let(:tune) { create(:tune, views: 0) }
+
+    it "assigns the tune as @tune" do
+      get :show, id: tune.to_param
+      expect(assigns(:tune)).to eq(tune)
+    end
+
+    it "adds one to the view count" do
+      get :show, id: tune.to_param
+      tune.reload
+      expect(tune.views).to eq(1)
+    end
+  end
+
   let(:valid_attributes) { attributes_for(:tune) }
   let(:invalid_attributes) { attributes_for(:tune, song_title: nil) }
 
