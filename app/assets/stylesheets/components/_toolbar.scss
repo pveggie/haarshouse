@@ -1,23 +1,29 @@
 .toolbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
 .toolbar-left {
-  align-self: flex-start;
+  .toolbar-label {
+    color: $gray-lightest;
+    text-shadow: -1px 1px 1px black;
+    margin-right: 10px;
+  }
+  align-items: center;
   display: flex;
   justify-content: flex-start;
-}
-.toolbar-link {
-  a {
-    // color: $gray-lightest;
-    margin: 10px;
 
+  .toolbar-filter-buttons {
+    display: flex;
 
-    // &:hover {
-    //   opacity: 0.8;
-    //   cursor: pointer;
-    // }
+    .toolbar-link {
+      a {
+        margin: 10px;
+        text-shadow: -2px 2px 2px $yellow-dark;
+      }
+    }
   }
 }
+
