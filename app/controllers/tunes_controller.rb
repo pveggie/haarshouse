@@ -5,7 +5,7 @@ class TunesController < ApplicationController
   before_action :find_tune, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tunes = params[:sort_scope].nil? ? Tune.all : tunes_sorted(params[:sort_scope])
+    @tunes = params[:sort_scope].nil? ? Tune.by_date : tunes_sorted(params[:sort_scope])
   end
 
   def new

@@ -44,12 +44,14 @@ RSpec.describe TunesController, type: :controller do
       expect(response).to render_template(:index)
     end
 
-    describe "sorting", sorting: true do
-      it "assigns tunes in the default order when no sort is chosen" do
+    describe "sorting", viewing: true, sorting: true do
+      it "assigns tunes by date added when no sort is chosen" do
+        # should be by last added, not last updated
+        Tune.first.update(song_title: "Fzio's Family")
         get :index, {}
         expect(assigns(:tunes)
           .map(&:song_title))
-          .to eq(["Ezio's Family", "Azio's Family", "Zzio's Family"])
+          .to eq(["Zzio's Family", "Azio's Family", "Fzio's Family"])
       end
 
       it "assigns tunes in A-Z game_title order when by_game is chosen" do

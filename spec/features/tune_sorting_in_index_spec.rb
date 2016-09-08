@@ -1,15 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature 'Tune sorting in index', sorting: true do
+RSpec.feature 'Tune sorting in index', viewing: true, sorting: true do
   # Not going to change any of the data for these tests.
   after(:all) { Tune.destroy_all }
 
   background(:all) do
-    create(
-      :tune,
-      game_title: "Zzzzz", song_title: "Zzzzz",
-      views: 1
-    )
     create(
       :tune,
       game_title: "gamea", song_title: "songb",
@@ -25,9 +20,14 @@ RSpec.feature 'Tune sorting in index', sorting: true do
       game_title: "gamec", song_title: "songc",
       youtube_video_id: "aaaaaaaaaac", views: 100
     )
+    create(
+      :tune,
+      game_title: "Zzzzz", song_title: "Zzzzz",
+      views: 1
+    )
   end
 
-  scenario "user views tunes index without sorting" do
+  scenario "user sees songs by last added if no sort is chosen" do
     visit tunes_path
     within(:css, '.caption', match: :first) do
       expect(page).to have_content('Zzzzz')

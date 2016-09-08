@@ -77,7 +77,7 @@ RSpec.describe Tune, type: :model do
     end
   end
 
-  describe "scopes", sorting: true do
+  describe "scopes", viewing: true, sorting: true do
     after(:all) { Tune.destroy_all }
 
     before(:all) do
@@ -105,6 +105,12 @@ RSpec.describe Tune, type: :model do
           views: song[:views]
         )
       end
+    end
+
+    it '.by_date sorts videos by most recently added' do
+      song_titles = Tune.by_date.pluck(:song_title)
+      expect(song_titles)
+        .to eq(["Zzio's Family", "Azio's Family", "ezio's Family"])
     end
 
     it '.by_song sorts videos from A-Z by song_title' do
