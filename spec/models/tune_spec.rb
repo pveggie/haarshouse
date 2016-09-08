@@ -6,7 +6,7 @@ RSpec.describe Tune, type: :model do
     expect(build(:tune)).to be_valid
   end
 
-  describe 'ActiveRecord valiations' do
+  describe 'ActiveRecord valiations', adding: true, editing: true do
     let(:test_tune) { build(:tune) }
 
     # it { expect(test_tune).to validate_presence_of(:game_title)}
@@ -61,7 +61,7 @@ RSpec.describe Tune, type: :model do
     end
   end
 
-  describe "callbacks" do
+  describe "callbacks", adding: true, editing: true do
     # http://guides.rubyonrails.org/active_record_callbacks.html
     # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
     let(:test_tune) { create(:tune) }

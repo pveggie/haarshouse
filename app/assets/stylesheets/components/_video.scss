@@ -15,7 +15,7 @@
     // this is for making height proportional to width
     content: "";
     display: block;
-    padding-top: 55%;
+    padding-top: 75%;
 
   }
 }
@@ -46,19 +46,29 @@
   left: 0;
   right: 0;
 
-  display: flex;
-  align-items: top;
+  font-size: 12px;
+  color: $gray-lighter;
+  line-height: 1.1em;
+
+  // display: flex;
+  // align-items: top;
 
   .caption-text {
-    padding: 5px 10px;
-
-    font-size: 12px;
-    color: $gray-light;
-    line-height: 1.1em;
+    // padding: 5px 10px 0 10px;
+    // margin-bottom: 0;
+    position: absolute;
+    top: 5px;
+    left: 7px;
 
     overflow: hidden;
     overflow-wrap: break-word;
     text-overflow: ellipsis;
+  }
+
+  .caption-views {
+    position: absolute;
+    right: 5px;
+    bottom: 7px;
   }
 }
 
@@ -67,6 +77,7 @@
   background-size: cover;
   width: 50px;
   height: 50px;
+  z-index: 10;
 
   &:hover {
     opacity: 0.5;

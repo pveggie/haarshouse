@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-RSpec.feature 'Tune deletion' do
+RSpec.feature 'Tune deletion', deleting: true do
   background do
-      create(:tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa")
-      create(:tune)
+    create(
+      :tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa"
+    )
+    create(:tune)
   end
 
   scenario 'user can use delete button to delete song', js: true do

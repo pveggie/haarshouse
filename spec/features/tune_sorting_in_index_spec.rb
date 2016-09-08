@@ -5,10 +5,26 @@ RSpec.feature 'Tune sorting in index', sorting: true do
   after(:all) { Tune.destroy_all }
 
   background(:all) do
-    create(:tune, game_title: "Zzzzz", song_title: "Zzzzz", views: 1)
-    create(:tune, game_title: "gamea", song_title: "songb", youtube_video_id: "aaaaaaaaaaa", views: 0)
-    create(:tune, game_title: "gameb", song_title: "songa", youtube_video_id: "aaaaaaaaaab", views: 5)
-    create(:tune, game_title: "gamec", song_title: "songc", youtube_video_id: "aaaaaaaaaac", views:100)
+    create(
+      :tune,
+      game_title: "Zzzzz", song_title: "Zzzzz",
+      views: 1
+    )
+    create(
+      :tune,
+      game_title: "gamea", song_title: "songb",
+      youtube_video_id: "aaaaaaaaaaa", views: 0
+    )
+    create(
+      :tune,
+      game_title: "gameb", song_title: "songa",
+      youtube_video_id: "aaaaaaaaaab", views: 5
+    )
+    create(
+      :tune,
+      game_title: "gamec", song_title: "songc",
+      youtube_video_id: "aaaaaaaaaac", views: 100
+    )
   end
 
   scenario "user views tunes index without sorting" do

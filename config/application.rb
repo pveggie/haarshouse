@@ -25,5 +25,8 @@ module Haarshouse
 
     # include stuff from lib without having to require it
     # config.autoload_paths += %W(#{config.root}/lib)
+
+    # for ajax
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

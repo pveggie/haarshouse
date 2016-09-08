@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'tunes#index'
-  resources :tunes, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :tunes
 
   unless Rails.env.production?
     namespace :anonymous do
