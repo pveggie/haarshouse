@@ -60,7 +60,7 @@
                         <p><%= tune.game_title %> - <%= tune.song_title %></p>
                       </div>
                       <div class="caption-views text-right">
-                        <i class="fa fa-eye" aria-hidden="true"></i> <%= tune.views %>
+                        <i class="fa fa-eye" aria-hidden="true"></i> <span id="view-count-<%= tune.youtube_video_id %>"><%= tune.views %></span>
                       </div>
                     </div>
                   <% end %>
