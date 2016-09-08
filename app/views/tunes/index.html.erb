@@ -39,7 +39,7 @@
               <div class="col-xs-12 col-sm-4 video">
                 <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
                   <div class="video" id="<%= tune.youtube_video_id %>">
-                    <%= link_to(tune_path(tune), remote: true, class: 'play-button') do %>
+                    <%= link_to(tune_path(tune), remote: true, class: 'play-button hidden') do %>
                       <div data-video-id="<%= tune.youtube_video_id%>"></div>
                     <% end %>
                   </div>

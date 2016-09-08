@@ -4,23 +4,27 @@ $( document ).ready(function() {
   // Replace the 'video' element with an <iframe> and
   // YouTube player after the API code downloads.
   // var player;
-  function playVideo (videoId) {
+  function loadVideo (videoId) {
     player = new YT.Player(videoId, {
       videoId: videoId,
-      autoplay: 1,
+      playerVars: { 'autoplay': 1},
       events: {
             'onReady': onPlayerReady,
-            // 'onStateChange': onPlayerStateChange
           }
     });
   }
 
+  // Start playback once video is loaded
   function onPlayerReady(event) {
     event.target.playVideo();
   }
 
   // get video ID from ajax request and play video
-  var videoId = '<%= @tune.youtube_video_id %>';
-  playVideo(videoId);
+  function initialisePlayback() {
+    var videoId = '<%= @tune.youtube_video_id %>';
+    loadVideo(videoId);
+  };
+
+  initialisePlayback();
 });
 
