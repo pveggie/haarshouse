@@ -27,3 +27,20 @@
   }
 }
 
+.search-field {
+  border-radius: 0;
+
+  &:first-child {
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin: 0;
+  }
+
+}
+
+
