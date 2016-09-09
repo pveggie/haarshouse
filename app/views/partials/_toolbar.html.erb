@@ -21,7 +21,7 @@
   </div>
 
   <div class="toolbar-center">
-    <%= form_tag("tunes/search", method: "get", class: "form-inline") do %>
+    <%= form_tag("tunes/search", method: "get", class: "form-inline", id: "search-form") do %>
       <div class="form-group">
         <%= text_field_tag :q, nil, placeholder: "Search song or game", class: "form-control search-field" %>
         <%= button_tag(class: "form-control search-field btn btn-default", id: "btn-search-submit") do %>
