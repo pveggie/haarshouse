@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root to: 'tunes#index'
-  resources :tunes
+  resources :tunes do
+    collection { get 'search' }
+  end
 
   unless Rails.env.production?
     namespace :anonymous do

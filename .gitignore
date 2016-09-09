@@ -11,3 +11,6 @@ public/assets
 
 # Ignore test examples
 spec/examples.txt
+
+#Ignore copied files
+spec/features/capybara_cheat_sheet.rb

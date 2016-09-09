@@ -49,31 +49,43 @@ RSpec.describe TunesController, type: :controller do
         # should be by last added, not last updated
         Tune.first.update(song_title: "Fzio's Family")
         get :index, {}
-        expect(assigns(:tunes)
-          .map(&:song_title))
+        expect(assigns(:tunes).map(&:song_title))
           .to eq(["Zzio's Family", "Azio's Family", "Fzio's Family"])
       end
 
       it "assigns tunes in A-Z game_title order when by_game is chosen" do
-        get :index, sort_scope: "by_game"
-        expect(assigns(:tunes)
-          .map(&:game_title))
+        get :index, sort: "by_game"
+        expect(assigns(:tunes).map(&:game_title))
           .to eq(["Assassin's Creed", "Mssassin's Creed", "Zssassin's Creed"])
       end
 
       it "assigns tunes in A-Z song_title order when by_song is chosen" do
-        get :index, sort_scope: "by_song"
-        expect(assigns(:tunes)
-          .map(&:song_title))
+        get :index, sort: "by_song"
+        expect(assigns(:tunes).map(&:song_title))
           .to eq(["Azio's Family", "Ezio's Family", "Zzio's Family"])
       end
 
       it "assigns tunes in view count order when most_viewed is chosen" do
-        get :index, sort_scope: "most_viewed"
-        expect(assigns(:tunes)
-          .map(&:views))
+        get :index, sort: "most_viewed"
+        expect(assigns(:tunes).map(&:views))
           .to eq([11, 5, 0])
       end
+    end
+  end
+
+  describe "GET #search", viewing: true, searching: true do
+    let!(:tune) { create(:tune) }
+
+    it "assigns the matching tunes as @tunes" do
+      get :search, q: "Fenris"
+      expect(assigns(:tunes).map(&:song_title))
+        .to eq(["Fenris Theme"])
+    end
+
+    it "does not assign non-match tunes" do
+      get :search, q: "Isabela"
+      expect(assigns(:tunes).map(&:song_title))
+        .to eq([])
     end
   end
 

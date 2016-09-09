@@ -12,7 +12,6 @@ Library of youtube videos from video games.
   <li>Ruby 2.3+</li>
   <li>PostgreSQL</li>
   <li>PhantomJS</li>
-  <li>ElasticSearch</li>
 </ul>
 
 ## Contributing

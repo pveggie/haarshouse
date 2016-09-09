@@ -5,76 +5,17 @@
 <div class="wrapper-default padded">
   <div class="container">
     <div class="row">
-
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
+        <%= render 'partials/toolbar' %>
+
         <div class="row">
-
-          <div class="toolbar">
-            <div class="toolbar-left">
-              <div class="toolbar-label">Sort tunes</div>
-              <div class="toolbar-filter-buttons">
-                <%= form_tag('', method: :get, class: "toolbar-link") do %>
-                  <%= hidden_field_tag(:sort_scope, "by_game") %>
-                  <%= submit_tag("By Game", class: "btn btn-sm btn-info") %>
-                <% end %>
-                <%= form_tag(tunes_path, method: :get, class: "toolbar-link") do %>
-                  <%= hidden_field_tag(:sort_scope, "by_song") %>
-                  <%= submit_tag("By Song", class: "btn btn-sm btn-info") %>
-                <% end %>
-                <%= form_tag(tunes_path, method: :get, class: "toolbar-link") do %>
-                  <%= hidden_field_tag(:sort_scope, "most_viewed") %>
-                  <%= submit_tag("Most Viewed", class: "btn btn-sm btn-info") %>
-                <% end %>
-              </div>
-            </div>
-            <div class="toolbar-right toolbar-link">
-              <%= link_to new_tune_path, class: "btn btn-sm btn-primary" do %>
-                <i class="fa fa-plus-square" aria-hidden="true"></i> Add Song
-              <% end %>
-            </div>
-          </div>
-
           <div class="video-grid">
-
-            <% @tunes.each do |tune| %>
-              <div class="col-xs-12 col-sm-4 video">
-                <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
-                  <div class="video" id="<%= tune.youtube_video_id %>">
-                    <%= link_to(tune_path(tune), remote: true, class: 'play-button hidden') do %>
-                      <div data-video-id="<%= tune.youtube_video_id%>"></div>
-                    <% end %>
-                  </div>
-
-                  <div class="icon icon-relative-top-right flex-row">
-                    <%= link_to edit_tune_path(tune), class: "edit-button" do %>
-                      <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                    <% end %>
-
-                    <%= link_to tune_path(tune), {class: "delete-button", method: :delete} do %>
-                    <i class="fa fa-trash"></i>
-                    <% end %>
-                  </div>
-
-                  <% unless tune.game_title.blank? && tune.song_title.blank? %>
-                    <div class="caption">
-                      <div class="caption-text">
-                        <p><%= tune.game_title %> - <%= tune.song_title %></p>
-                      </div>
-                      <div class="caption-views text-right">
-                        <i class="fa fa-eye" aria-hidden="true"></i> <span id="view-count-<%= tune.youtube_video_id %>"><%= tune.views %></span>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-
+            <%= render 'partials/tune_collection' %>
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </div>

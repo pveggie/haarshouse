@@ -5,7 +5,12 @@ class TunesController < ApplicationController
   before_action :find_tune, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tunes = params[:sort_scope].nil? ? Tune.by_date : tunes_sorted(params[:sort_scope])
+    @tunes = params[:sort].nil? ? Tune.by_date : tunes_sorted(params[:sort])
+  end
+
+  def search
+    @tunes = Tune.search(params[:q])
+    render :index
   end
 
   def new
@@ -59,8 +64,8 @@ class TunesController < ApplicationController
     params.require(:tune).permit(:game_title, :song_title, :youtube_video_id)
   end
 
-  def tunes_sorted(sort_scope)
-    sort_scope.downcase!
-    Tune.send(sort_scope.to_sym)
+  def tunes_sorted(sort)
+    sort.downcase!
+    Tune.send(sort.to_sym)
   end
 end
