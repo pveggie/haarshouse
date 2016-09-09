@@ -5,7 +5,7 @@ class Tune < ActiveRecord::Base
   # == Attributes ===========================================================
 
   # == Extensions ===========================================================
-
+  include PgSearch
   # == Relationships ========================================================
 
   # == Validations ==========================================================
@@ -32,6 +32,15 @@ class Tune < ActiveRecord::Base
   scope :by_game, -> { order(:game_title) }
   scope :by_song, -> { order(:song_title) }
   scope :most_viewed, -> { order(views: :desc) }
+
+  pg_search_scope :search,
+                  against: [:game_title, :song_title],
+                  using: {
+                    :tsearch => {
+                      prefix: true,
+                      dictionary: "english"
+                    },
+                  }
 
   # == Callbacks ============================================================
   before_save :extract_video_id_from_youtube_url
