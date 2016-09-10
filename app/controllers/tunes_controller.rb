@@ -10,7 +10,7 @@ class TunesController < ApplicationController
 
   def search
     @tunes = Tune.search(params[:q])
-    render :index
+    @hits = @tunes.count
   end
 
   def new
