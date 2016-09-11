@@ -9,20 +9,20 @@
 
         <%= render 'toolbar' %>
 
+        <div class="box-rounded-1px bg-gray" id="info-search-results">
+          <% if @hits == 0 %>
+            <p>No matches for term "<%= params[:q] %>". Try searching for
+            something else or <%= link_to("go back to the tunes list", tunes_path, class: "link-gray-light") %>
+              .</p>
+          <% else %>
+            <p>Matches for term "<%= params[:q] %>": <%= @hits %>.</p>
+            <%= link_to("Go back", tunes_path, class: "link-gray-light") %>
+          <% end %>
+        </div>
+
+
         <div class="row">
           <div class="video-grid">
-
-            <div class="box-light bg-gray padded" id="info-search-results">
-              <% if @hits == 0 %>
-                <p>No matches for term "<%= params[:q] %>". Try searching for
-                something else or <%= link_to("go back to the tunes list", tunes_path) %>
-                  .</p>
-              <% else %>
-                <p>Matches for term "<%= params[:q] %>": <%= @hits %>.</p>
-                <%= link_to("Go back", tunes_path) %>
-              <% end %>
-            </div>
-
             <%= render 'tune_collection' %>
           </div>
         </div>
