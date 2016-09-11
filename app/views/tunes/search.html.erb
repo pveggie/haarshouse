@@ -1,0 +1,33 @@
+<% content_for(:title) do %>
+<%= "Haar's House of Tunes" %>
+<% end %>
+
+<div class="wrapper-default padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+        <%= render 'toolbar' %>
+
+        <div class="box-rounded-1px bg-gray" id="info-search-results">
+          <% if @hits == 0 %>
+            <p>No matches for term "<%= params[:q] %>". Try searching for
+            something else or <%= link_to("go back to the tunes list", tunes_path, class: "link-gray-light") %>
+              .</p>
+          <% else %>
+            <p>Matches for term "<%= params[:q] %>": <%= @hits %>.</p>
+            <%= link_to("Go back", tunes_path, class: "link-gray-light") %>
+          <% end %>
+        </div>
+
+
+        <div class="row">
+          <div class="video-grid">
+            <%= render 'tune_collection' %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

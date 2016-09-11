@@ -87,6 +87,17 @@ RSpec.describe TunesController, type: :controller do
       expect(assigns(:tunes).map(&:song_title))
         .to eq([])
     end
+
+    it "assigns the number of hits as @hits" do
+      create(:tune, song_title: "Fenris aaaa", youtube_video_id: "dSCq7jTL7tz")
+      get :search, q: "Fenris"
+      expect(assigns(:hits)).to eq(2)
+    end
+
+    it "assigns @hits as 0 when there are no hits" do
+      get :search, q: "Isabela"
+      expect(assigns(:hits)).to eq(0)
+    end
   end
 
   describe "GET #show", viewing: true do
