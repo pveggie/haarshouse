@@ -1,4 +1,5 @@
-<div class="toolbar">
+<!-- For larger views -->
+<div class="toolbar toolbar-full hidden-xs hidden-sm">
 
   <div class="toolbar-left">
     <div class="toolbar-label">
@@ -36,5 +37,50 @@
       <i class="fa fa-plus-square" aria-hidden="true"></i> Add Song
     <% end %>
   </div>
+
+</div>
+
+<!-- For smaller views -->
+<div class="toolbar toolbar-mobile hidden-md hidden-lg">
+
+  <div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="dropdown btn btn-sm btn-info">
+      <div id="sortOptions" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort
+        <span class="caret"></span>
+      </div>
+
+      <ul class="dropdown-menu" aria-labelledby="sortOptions">
+        <li>
+          <%= link_to "By Game",tunes_path(@tunes, method: :get, sort:"by_game") %>
+        </li>
+        <li>
+          <%= link_to "By Song",tunes_path(@tunes, method: :get, sort:"by_song") %>
+        </li>
+        <li>
+          <%= link_to "Most Viewed",tunes_path(@tunes, method: :get, sort:"most_viewed") %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="dropdown btn btn-sm btn-info" id="searchButtonMobile">
+      <i class="fa fa-search" aria-hidden="true"></i> Search
+    </div>
+
+    <%= link_to "Add Song", new_tune_path, class: "btn btn-sm btn-info" %>
+  </div>
+
+  <%= form_tag(search_tunes_path, method: "get", class: "form form-inline-mobile hidden", id: "searchBoxMobile") do %>
+    <div class="form-group form-group-mobile">
+      <div>
+        <%= text_field_tag :q, nil, placeholder: "Search", class: "form-control form-control-mobile search-field" %>
+      </div>
+      <div>
+        <%= button_tag(class: "form-control form-control-mobile search-field btn btn-default", id: "btn-search-submit") do %>
+          Go
+        <%end %>
+      </div>
+    </div>
+  <% end %>
 
 </div>

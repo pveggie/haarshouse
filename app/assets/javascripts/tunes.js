@@ -11,4 +11,16 @@ $( document ).ready(function() {
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   $('.play-button').removeClass('hidden');
+
+  $('#searchButtonMobile').click(function(){
+    $('#searchBoxMobile').removeClass('hidden');
+  });
+
+  $('#sortOptions').click(function(){
+    $('#searchBoxMobile').addClass('hidden');
+  });
+
+  $('.video-grid').click(function(){
+    $('#searchBoxMobile').addClass('hidden');
+  });
 });
