@@ -1,8 +1,11 @@
 .toolbar {
+  margin-bottom: 20px;
+}
+
+.toolbar-full {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .toolbar-left {
@@ -43,4 +46,27 @@
 
 }
 
+.toolbar-mobile {
+  width: 100%;
+}
 
+.dropdown {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  border-collapse: collapse;
+  margin: 0;
+  // padding: 5px 10px;
+  background: $yellow-dark;
+  width: 100%;
+  z-index: 20;
+  border: 0.2px solid $yellow;
+
+  li a {
+    color: white;
+  }
+}
