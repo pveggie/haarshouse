@@ -41,7 +41,7 @@
 </div>
 
 <!-- For smaller views -->
-<div class="toolbar toolbar-mobile hidden-md hidden-lg">
+<div class="toolbar toolbar-mobile hidden-md hidden-lg hidden">
 
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="dropdown btn btn-sm btn-info">
@@ -73,7 +73,7 @@
   <%= form_tag(search_tunes_path, method: "get", class: "form form-inline-mobile hidden", id: "searchBoxMobile") do %>
     <div class="form-group form-group-mobile">
       <div>
-        <%= text_field_tag :q, nil, placeholder: "Search", class: "form-control form-control-mobile search-field" %>
+        <%= text_field_tag :q, nil, placeholder: "Search song or game", class: "form-control form-control-mobile search-field" %>
       </div>
       <div>
         <%= button_tag(class: "form-control form-control-mobile search-field btn btn-default", id: "btn-search-submit") do %>

@@ -64,7 +64,9 @@ RSpec.feature 'Tune search', viewing: true, searching: true do
 
     expect(page).to_not have_text("Isabela Theme")
 
-    click_on "By Song"
+    within '.toolbar-full' do
+      click_on('By Song')
+    end
 
     expect(page).to have_text("Isabela Theme")
   end
