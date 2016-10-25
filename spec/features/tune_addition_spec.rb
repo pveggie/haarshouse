@@ -1,14 +1,17 @@
 require 'rails_helper'
 
-RSpec.feature 'Tune addition', adding: true do
+RSpec.feature 'Tune addition', adding: true, visible: true do
   given(:valid_data) { attributes_for(:tune) }
   given(:invalid_data) { attributes_for(:tune, song_title: nil) }
+  background { resize_window_default }
 
   scenario 'Adding a song with invalid user input' do
     # go to add tunes form. No videos exist
     visit tunes_path
     expect(page).to_not have_css('.video-container')
-    click_link('Add Song')
+    within '.toolbar-full' do
+      click_link('Add Song')
+    end
 
     # fill in form and submit
     check_page_and_add_tune(invalid_data)
@@ -25,7 +28,9 @@ RSpec.feature 'Tune addition', adding: true do
   scenario 'Adding first song with valid user input' do
     # go to add tunes form
     visit tunes_path
-    click_link('Add Song')
+    within '.toolbar-full' do
+      click_link('Add Song')
+    end
 
     # fill in form and submit
     check_page_and_add_tune(valid_data)
@@ -51,7 +56,9 @@ RSpec.feature 'Tune addition', adding: true do
     # go to add tunes form.
     visit tunes_path
     expect(page).to have_css('.video-container', count: 3)
-    click_link('Add Song')
+    within '.toolbar-full' do
+      click_link('Add Song')
+    end
 
     # fill in form and submit
     check_page_and_add_tune(valid_data)
