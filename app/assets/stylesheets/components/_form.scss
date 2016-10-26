@@ -1,7 +1,16 @@
+form label {
+  color:
+  $gray-lighter;
+}
+
 .form-inline-mobile {
   width: 100%;
 }
 
 .form-group-mobile {
   display: flex;
+}
+
+form .flex-row {
+  margin-top: 25px;
 }
