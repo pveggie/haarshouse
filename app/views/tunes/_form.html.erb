@@ -3,10 +3,15 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <%= simple_form_for @tune do |f| %>
-        <%= f.input :game_title %>
-        <%= f.input :song_title %>
-        <%= f.input :youtube_video_id %>
-        <%= f.button :submit %>
+        <div class="form-group">
+          <%= f.input :game_title, class: "form-control" %>
+          <%= f.input :song_title, class: "form-control" %>
+          <%= f.input :youtube_video_id, class: "form-control" %>
+        </div>
+          <div class="flex-row">
+            <%= link_to "Cancel", tunes_path, class: "btn btn-default flex-item-half-width" %>
+            <%= f.button :submit, class: "btn btn-info flex-item-half-width" %>
+          </div>
       <% end %>
     </div>
   </div>

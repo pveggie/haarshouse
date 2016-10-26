@@ -68,6 +68,18 @@ RSpec.feature 'Tune addition', adding: true, visible: true do
     expect(page).to have_css('#dSCq7jTL7tQ')
   end
 
+  scenario 'Cancelling adding a song' do
+    visit tunes_path
+    expect(page).to_not have_css('.video-container')
+
+    within '.toolbar-full' do
+      click_link('Add Song')
+    end
+    click_link('Cancel')
+    expect(page).to_not have_field('Game title')
+    expect(page).to_not have_css('.video-container')
+  end
+
   def check_page_and_add_tune(data)
     expect(page).to have_field('Game title')
     fill_in 'Game title', with: data[:game_title]

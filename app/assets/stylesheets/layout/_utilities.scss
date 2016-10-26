@@ -46,6 +46,13 @@
   align-items: center;
 }
 
+.flex-item-half-width{
+  flex: 0 0 50%;
+  border-collapse: collapse;
+}
+
 .width-full {
   width: 100%;
 }
+
+
