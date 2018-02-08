@@ -17,6 +17,7 @@ gem 'autoprefixer-rails'
 gem 'haar_joke'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'pg_search'
+gem 'devise'
 
 group :development, :test do
   gem 'binding_of_caller'
