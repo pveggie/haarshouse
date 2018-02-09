@@ -7,7 +7,7 @@ RSpec.describe Tune, type: :model do
     expect(build(:tune)).to be_valid
   end
 
-  describe 'ActiveRecord valiations', adding: true, editing: true do
+  describe 'ActiveRecord validations', adding: true, editing: true do
     let(:test_tune) { build(:tune) }
 
     # it { expect(test_tune).to validate_presence_of(:game_title)}
