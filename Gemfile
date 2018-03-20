@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.3.3'
 
 gem 'rails', '4.2.6'
 gem 'puma'
-gem 'pg'
+gem 'pg', '~> 0.18.0'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
 
@@ -18,6 +18,7 @@ gem 'haar_joke'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'pg_search'
 gem 'devise'
+gem 'figaro'
 
 group :development, :test do
   gem 'binding_of_caller'
@@ -27,8 +28,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'
   gem 'rspec-rails', '~> 3.4'
-  # https://github.com/thoughtbot/factory_girl_rails
-  gem 'factory_girl_rails'
+  # https://github.com/thoughtbot/factory_bot_rails
+  gem 'factory_bot_rails'
   gem 'webmock'
 end
 
@@ -40,6 +41,7 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'database_cleaner'
   # gem 'capybara-webkit'
   # gem 'selenium-webdriver'

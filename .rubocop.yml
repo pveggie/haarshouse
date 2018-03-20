@@ -1,7 +1,1 @@
-inherit_from: ../../.rubocop.yml
-
-# Style/IndentationConsistency:
-#   EnforcedStyle: rails
-
-Style/RegexpLiteral:
-  EnforcedStyle: slashes
+inherit_from: ~/code/rubocop-rails.yml

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :tune do |f|
     f.game_title "Dragon Age 2"
     f.song_title "Fenris Theme"

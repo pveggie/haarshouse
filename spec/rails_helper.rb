@@ -9,6 +9,7 @@ require 'webmock/rspec'
 
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+require 'phantomjs'
 require 'database_cleaner'
 
 require 'haar_joke'
@@ -111,7 +112,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   # -- Factory Girl ---------------------------------------------------
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
 
 #-- Webmock ----------------------------------------------------------
@@ -138,7 +139,8 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(
     app,
     js_errors: true,
-    debug: false
+    debug: false,
+    phantomjs: Phantomjs.path
   )
 end
 
