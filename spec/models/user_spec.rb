@@ -5,8 +5,9 @@ RSpec.describe User, type: :model do
     expect(build(:user)).to be_valid
   end
 
-  describe "ActiveRecord validations" do
-    let(:test_user) { build(:user) }
-    # devise auto-requires email, password and matching confirm password
+  let(:test_user) { build(:user) }
+
+  describe "Active record associations" do
+    it { expect(test_user).to have_many(:tunes) }
   end
 end

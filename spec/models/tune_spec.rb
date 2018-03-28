@@ -7,8 +7,13 @@ RSpec.describe Tune, type: :model do
     expect(build(:tune)).to be_valid
   end
 
+  it "has a valid factory for tunes belonging to user" do
+    expect(build(:user_tune)).to be_valid
+  end
+
   describe 'ActiveRecord validations', adding: true, editing: true do
     let(:test_tune) { build(:tune) }
+    let(:test_user_tune) { build(:user_tune) }
 
     # it { expect(test_tune).to validate_presence_of(:game_title)}
     # template uses short hand but I'm writing everything out in full
@@ -59,6 +64,21 @@ RSpec.describe Tune, type: :model do
 
     it 'is invalid when the youtube_video_id has the wrong format' do
       expect(test_tune).to_not allow_value("Hi there").for(:youtube_video_id)
+    end
+  end
+
+  describe "Active record associations" do
+    let(:test_tune) { create(:tune) }
+    let(:test_user_tune) { build(:user_tune) }
+
+    context "with user songs" do
+      it { expect(test_user_tune).to belong_to(:user) }
+    end
+
+    context "with userless songs" do
+      it "allows songs to have no user" do
+        expect(test_tune.user).to be_nil
+      end
     end
   end
 

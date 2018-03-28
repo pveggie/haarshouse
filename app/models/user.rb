@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # == Relationships ========================================================
-
+  has_many :tunes
+  
   # == Validations ==========================================================
 
   # == Scopes ===============================================================

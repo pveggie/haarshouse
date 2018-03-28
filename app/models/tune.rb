@@ -7,6 +7,7 @@ class Tune < ActiveRecord::Base
   # == Extensions ===========================================================
   include PgSearch
   # == Relationships ========================================================
+  belongs_to :user
 
   # == Validations ==========================================================
   validates :game_title, presence: true
