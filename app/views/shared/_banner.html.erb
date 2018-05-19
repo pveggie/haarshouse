@@ -1,6 +1,11 @@
 <div class="banner">
-  <div class="banner-content">
-    <div><h1 class="banner-header">Haar's House of Tunes</h1></div>
+  <div class="banner__navigation">
+    <%= link_to new_user_session_path, class: "banner__navigation-link" do %>
+      <i class="fas fa-user banner__navigation-icon"></i>Login
+    <% end %>
+  </div>
+  <div class="banner__content">
+    <div><h1 class="banner__header">Haar's House of Tunes</h1></div>
     <div><%= image_tag 'haar.png' %></div>
   </div>
 </div>

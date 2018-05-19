@@ -1,27 +1,47 @@
 .banner {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c484d+0,000000+100 */
-background: #8c484d; /* Old browsers */
-background: radial-gradient(ellipse at center, #333333 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: #8c484d; /* Old browsers */
+  background: radial-gradient(ellipse at center, $gray-dark 0%, $black 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-height: 180px;
-background-size: cover;
-display: flex;
-justify-content: center;
-align-items: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 40px 0;
 }
 
-.banner-content {
-  max-width: 300px;
+.banner__navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.banner__navigation-icon {
+  margin-right: 5px;
+}
+
+.banner__navigation-link {
+  color: $gray-lighter;
+
+  &:hover {
+    color: $gray-lightest;
+    opacity: 0,8;
+  }
+}
+
+.banner__content {
+  max-width: 80%;
   display:flex;
   align-items: center;
-  color: #ffffff;
+  color: $white;
   opacity: 0.9;
-  height: 180px;
   text-align: center;
+}
 
-  .banner-header {
-    flex: 0 0 0 50%;
-    text-shadow: 2px 2px 8px #555555;
-  }
+.banner__header {
+  flex: 0 0 0 50%;
+  text-shadow: 2px 2px 8px $gray;
 }
