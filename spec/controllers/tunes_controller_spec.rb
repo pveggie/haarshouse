@@ -4,6 +4,7 @@ RSpec.describe TunesController, type: :controller do
   # This should return the minimal set of attributes required to create
   # a valid Tune. As you add validations to Tune, be sure to
   # adjust the attributes here as well.
+  let(:user) { create(:user) }
 
   describe "GET #index", viewing: true do
     after(:all) { Tune.destroy_all }
@@ -134,26 +135,35 @@ RSpec.describe TunesController, type: :controller do
   end
 
   describe "POST #create", adding: true do
-    let(:create_post) { post :create, tune: valid_attributes }
+    let(:create_tune) { post :create, tune: valid_attributes }
+
+    context "while logged in" do
+      before { sign_in(user) }
+
+      it "creates a Tune belonging to the user" do
+        create_tune
+        expect(Tune.last.user).to eq(user)
+      end
+    end
 
     context "with valid params" do
       it "creates a new Tune" do
-        expect { create_post }
+        expect { create_tune }
           .to change(Tune, :count).by(1)
       end
 
       it "assigns a newly created tune as @tune" do
-        create_post
+        create_tune
         expect(assigns(:tune)).to be_a(Tune)
       end
 
       it "it saves the created @tune instance variable" do
-        create_post
+        create_tune
         expect(assigns(:tune)).to be_persisted
       end
 
       it "redirects to the index" do
-        create_post
+        create_tune
         expect(response).to redirect_to(tunes_path)
       end
     end

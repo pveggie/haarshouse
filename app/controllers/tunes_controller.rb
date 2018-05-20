@@ -30,7 +30,12 @@ class TunesController < ApplicationController
   end
 
   def create
-    @tune = Tune.new(tune_params)
+    if user_signed_in?
+      @tune = current_user.tunes.build(tune_params)
+    else
+      @tune = Tune.new(tune_params)
+    end
+    
     if @tune.save
       redirect_to tunes_path
     else
@@ -61,7 +66,7 @@ class TunesController < ApplicationController
   end
 
   def tune_params
-    params.require(:tune).permit(:game_title, :song_title, :youtube_video_id)
+    params.require(:tune).permit(:game_title, :song_title, :youtube_video_id, :user_id)
   end
 
   def tunes_sorted(sort)
