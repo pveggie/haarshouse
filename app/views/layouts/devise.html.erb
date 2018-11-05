@@ -5,7 +5,15 @@
     <%= render partial: 'shared/banner', locals: {haar_joke: @haar_joke}%>
     <%= render partial: 'shared/alerts' %>
 
-    <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8">
+          <div class="form-wrapper">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%= javascript_include_tag 'application' %>
   </body>

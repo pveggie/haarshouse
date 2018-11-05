@@ -1,7 +1,13 @@
 <div class="banner">
   <div class="banner__navigation">
-    <%= link_to new_user_session_path, class: "banner__navigation-link" do %>
-      <i class="fas fa-user banner__navigation-icon"></i>Login
+    <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path, class: "banner__navigation-link", method: "delete" do %>
+        <i class="fas fa-sign-out-alt banner__navigation-icon"></i>Logout
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "banner__navigation-link" do %>
+        <i class="fas fa-user banner__navigation-icon"></i>Login
+      <% end %>
     <% end %>
   </div>
   <div class="banner__content">
