@@ -1,15 +1,14 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 require 'webmock/rspec'
 
 require 'capybara/rspec'
-require 'capybara/poltergeist'
-require 'phantomjs'
+require 'selenium-webdriver'
 require 'database_cleaner'
 
 require 'haar_joke'
@@ -62,6 +61,7 @@ RSpec.configure do |config|
         uncommitted transaction data setup over the spec's database connection.
       MSG
     end
+
     DatabaseCleaner.clean_with(:deletion)
   end
 
@@ -123,7 +123,7 @@ WebMock.disable_net_connect!(allow: /youtube/, allow_localhost: true)
 RSpec.configure do |config|
   config.before(:each) do
     stub_request(:get, /icndb.com/)
-      .to_return(status: 200, body: "Chuck Norris is sleeping", headers: {})
+      .to_return(status: 200, body: 'Chuck Norris is sleeping', headers: {})
   end
 end
 
@@ -137,13 +137,4 @@ Shoulda::Matchers.configure do |config|
 end
 
 # JS driver
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(
-    app,
-    js_errors: true,
-    debug: false,
-    phantomjs: Phantomjs.path
-  )
-end
-
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :selenium_chrome_headless
