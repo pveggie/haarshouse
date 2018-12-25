@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
 
-gem 'rails', '~>4.2.10'
+gem 'rails', '~>4.2.11'
 gem 'puma'
 gem 'pg', '~> 0.18.0'
 gem 'jbuilder', '~> 2.0'
