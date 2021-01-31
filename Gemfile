@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '3.0.0'
 
-gem 'rails', '~>4.2.11'
+gem 'rails', '~> 6.1', '>= 6.1.1'
 gem 'puma'
-gem 'pg', '~> 0.18.0'
-gem 'jbuilder', '~> 2.0'
+gem 'pg'
+gem 'jbuilder'
 gem 'redis'
 
 gem 'sass-rails'
@@ -13,7 +13,7 @@ gem 'uglifier' #minifies javascript
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
-gem 'autoprefixer-rails', '~> 8.1.0'
+gem 'autoprefixer-rails'
 gem 'haar_joke'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'pg_search'
@@ -23,11 +23,10 @@ gem 'figaro'
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
-  gem 'quiet_assets'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-rails'
   # https://github.com/thoughtbot/factory_bot_rails
   gem 'factory_bot_rails'
   gem 'webmock'
@@ -35,9 +34,9 @@ end
 
 group :test do
   # https://github.com/thoughtbot/shoulda-matchers
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers'
   # https://github.com/jdliss/shoulda-callback-matchers
-  gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'shoulda-callback-matchers'
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
