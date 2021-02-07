@@ -1,4 +1,4 @@
-class CreateTunes < ActiveRecord::Migration
+class CreateTunes < ActiveRecord::Migration[4.2]
   def change
     create_table :tunes do |t|
       t.string :poster
