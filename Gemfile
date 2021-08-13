@@ -13,7 +13,7 @@ gem 'uglifier' #minifies javascript
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
-gem 'autoprefixer-rails', '~> 10.2.0.0'
+gem 'autoprefixer-rails'
 gem 'haar_joke'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'pg_search'
