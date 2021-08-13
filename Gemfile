@@ -40,6 +40,7 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'webdrivers', '~> 4.0', require: false
   gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'

@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'webmock/rspec'
 
 require 'capybara/rspec'
+require 'webdrivers/chromedriver'
 require 'selenium-webdriver'
 require 'database_cleaner'
 
@@ -116,7 +117,7 @@ RSpec.configure do |config|
 end
 
 #-- Webmock ----------------------------------------------------------
-WebMock.disable_net_connect!(allow: /youtube/, allow_localhost: true)
+WebMock.disable_net_connect!(allow: /youtube|chromedriver/, allow_localhost: true)
 
 RSpec.configure do |config|
   config.before(:each) do
