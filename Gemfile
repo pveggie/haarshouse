@@ -43,6 +43,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'rails-controller-testing'
 end
 
 group :production do
