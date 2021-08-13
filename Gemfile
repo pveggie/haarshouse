@@ -13,7 +13,7 @@ gem 'uglifier' #minifies javascript
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
-gem 'autoprefixer-rails', '~> 10.2.0.0'
+gem 'autoprefixer-rails'
 gem 'haar_joke'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'pg_search'
@@ -40,9 +40,11 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'webdrivers', '~> 4.0', require: false
   gem 'selenium-webdriver'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'rails-controller-testing'
 end
 
 group :production do

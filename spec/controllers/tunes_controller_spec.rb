@@ -35,12 +35,12 @@ RSpec.describe TunesController, type: :controller do
     end
 
     it "assigns all tunes as @tunes" do
-      get :index, {}
+      get :index
       expect(assigns(:tunes).count).to eq(3)
     end
 
     it "renders the index view" do
-      get :index, {}
+      get :index
       expect(response).to render_template(:index)
     end
 
@@ -48,25 +48,25 @@ RSpec.describe TunesController, type: :controller do
       it "assigns tunes by date added when no sort is chosen" do
         # should be by last added, not last updated
         Tune.first.update(song_title: "Fzio's Family")
-        get :index, {}
+        get :index
         expect(assigns(:tunes).map(&:song_title))
           .to eq(["Zzio's Family", "Azio's Family", "Fzio's Family"])
       end
 
       it "assigns tunes in A-Z game_title order when by_game is chosen" do
-        get :index, sort: "by_game"
+        get :index, params: { sort: "by_game" }
         expect(assigns(:tunes).map(&:game_title))
           .to eq(["Assassin's Creed", "Mssassin's Creed", "Zssassin's Creed"])
       end
 
       it "assigns tunes in A-Z song_title order when by_song is chosen" do
-        get :index, sort: "by_song"
+        get :index, params: { sort: "by_song" }
         expect(assigns(:tunes).map(&:song_title))
           .to eq(["Azio's Family", "Ezio's Family", "Zzio's Family"])
       end
 
       it "assigns tunes in view count order when most_viewed is chosen" do
-        get :index, sort: "most_viewed"
+        get :index, params: { sort: "most_viewed" }
         expect(assigns(:tunes).map(&:views))
           .to eq([11, 5, 0])
       end
@@ -77,25 +77,25 @@ RSpec.describe TunesController, type: :controller do
     let!(:tune) { create(:tune) }
 
     it "assigns the matching tunes as @tunes" do
-      get :search, q: "Fenris"
+      get :search, params: { q: "Fenris" }
       expect(assigns(:tunes).map(&:song_title))
         .to eq(["Fenris Theme"])
     end
 
     it "does not assign non-match tunes" do
-      get :search, q: "Isabela"
+      get :search, params: { q: "Isabela" }
       expect(assigns(:tunes).map(&:song_title))
         .to eq([])
     end
 
     it "assigns the number of hits as @hits" do
       create(:tune, song_title: "Fenris aaaa", youtube_video_id: "dSCq7jTL7tz")
-      get :search, q: "Fenris"
+      get :search, params: { q: "Fenris" }
       expect(assigns(:hits)).to eq(2)
     end
 
     it "assigns @hits as 0 when there are no hits" do
-      get :search, q: "Isabela"
+      get :search, params: { q: "Isabela" }
       expect(assigns(:hits)).to eq(0)
     end
   end
@@ -104,12 +104,12 @@ RSpec.describe TunesController, type: :controller do
     let(:tune) { create(:tune, views: 0) }
 
     it "assigns the tune as @tune" do
-      get :show, id: tune.to_param
+      get :show, params: { id: tune.to_param }
       expect(assigns(:tune)).to eq(tune)
     end
 
     it "adds one to the view count" do
-      get :show, id: tune.to_param
+      get :show, params: { id: tune.to_param }
       tune.reload
       expect(tune.views).to eq(1)
     end
@@ -120,7 +120,7 @@ RSpec.describe TunesController, type: :controller do
 
   describe "GET #new", adding: true do
     it "assigns a new tune as @tune" do
-      get :new, {}
+      get :new
       expect(assigns(:tune)).to be_a_new(Tune)
     end
   end
@@ -128,13 +128,13 @@ RSpec.describe TunesController, type: :controller do
   describe "GET #edit", editing: true do
     it "assigns the requested tune as @tune" do
       tune = create(:tune)
-      get :edit, id: tune.to_param
+      get :edit, params: { id: tune.to_param }
       expect(assigns(:tune)).to eq(tune)
     end
   end
 
   describe "POST #create", adding: true do
-    let(:create_post) { post :create, tune: valid_attributes }
+    let(:create_post) { post :create, params: { tune: valid_attributes } }
 
     context "with valid params" do
       it "creates a new Tune" do
@@ -159,7 +159,7 @@ RSpec.describe TunesController, type: :controller do
     end
 
     context "with invalid params" do
-      before { post :create, tune: invalid_attributes }
+      before { post :create, params: { tune: invalid_attributes } }
 
       it "assigns a newly created but unsaved tune as @tune" do
         expect(assigns(:tune)).to be_a_new(Tune)
@@ -182,42 +182,42 @@ RSpec.describe TunesController, type: :controller do
 
     context "with valid params" do
       it "updates the requested tune" do
-        put :update, id: tune.to_param, tune: new_attributes
+        put :update, params: { id: tune.to_param, tune: new_attributes }
         tune.reload
         expect(tune.song_title).to eq("New Song")
       end
 
       it "assigns the requested tune as @tune" do
-        put :update, id: tune.to_param, tune: valid_attributes
+        put :update, params: { id: tune.to_param, tune: valid_attributes }
         expect(assigns(:tune)).to eq(tune)
       end
 
       it "redirects to the index" do
-        put :update, id: tune.to_param, tune: valid_attributes
+        put :update, params: { id: tune.to_param, tune: valid_attributes }
         expect(response).to redirect_to(tunes_path)
       end
     end
 
     context "with invalid params" do
       it "assigns the tune as @tune" do
-        put :update, id: tune.to_param, tune: invalid_attributes
+        put :update, params: { id: tune.to_param, tune: invalid_attributes }
         expect(assigns(:tune)).to eq(tune)
       end
 
       it "does not update the tune" do
         title = tune.song_title
-        put :update, id: tune.to_param, tune: invalid_attributes
+        put :update, params: { id: tune.to_param, tune: invalid_attributes }
         tune.reload
         expect(tune.song_title).to eq(title)
       end
 
       it "re-renders the 'edit' template" do
-        put :update, id: tune.to_param, tune: invalid_attributes
+        put :update, params: { id: tune.to_param, tune: invalid_attributes }
         expect(response).to render_template(:edit)
       end
 
       it "gives a flash fail message" do
-        put :update, id: tune.to_param, tune: invalid_attributes
+        put :update, params: { id: tune.to_param, tune: invalid_attributes }
         expect(flash[:alert]).to eq "Song not updated."
       end
     end
@@ -227,12 +227,12 @@ RSpec.describe TunesController, type: :controller do
     let!(:tune) { create(:tune) }
 
     it "destroys the requested tune" do
-      expect { delete :destroy, id: tune.to_param }
+      expect { delete :destroy, params: { id: tune.to_param } }
         .to change(Tune, :count).by(-1)
     end
 
     it "redirects to the tunes list" do
-      delete :destroy, id: tune.to_param
+      delete :destroy, params: { id: tune.to_param }
       expect(response).to redirect_to(tunes_path)
     end
   end
