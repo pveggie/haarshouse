@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) || "Haar's House of Tunes" %></title>
+    <title>PgsqlAuto</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
+
   <body>
-    <%= render partial: 'shared/banner', locals: {haar_joke: @haar_joke}%>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
-    <%= javascript_include_tag 'application' %>
   </body>
 </html>

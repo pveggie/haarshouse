@@ -1,25 +1,24 @@
-# Haar's House of Tunes
+# README
 
-<img src="https://travis-ci.org/pveggie/haarshouse.svg?branch=master">
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-## Description
+Things you may want to cover:
 
-Library of youtube videos from video games.
+* Ruby version
 
-## Requirements
+* System dependencies
 
-<ul>
-  <li>Ruby 2.3+</li>
-  <li>PostgreSQL</li>
-  <li>PhantomJS</li>
-</ul>
+* Configuration
 
-## Contributing
+* Database creation
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/pveggie/haarshouse.
+* Database initialization
 
+* How to run the test suite
 
-## License
+* Services (job queues, cache servers, search engines, etc.)
 
-All code is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+* Deployment instructions
 
+* ...
