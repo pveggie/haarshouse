@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 ruby '3.1.2'
 
-gem 'rails', '~> 6.1', '>= 6.1.1'
-gem 'puma'
-gem 'pg'
-gem 'jbuilder'
-gem 'redis'
+# gem 'rails', '~> 6.1', '>= 6.1.1'
+# gem 'puma'
+# gem 'pg'
+# gem 'jbuilder'
+# gem 'redis'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -14,7 +14,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-gem 'haar_joke'
+# gem 'haar_joke'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'pg_search'
 gem 'devise'
@@ -29,7 +29,7 @@ group :development, :test do
   gem 'rspec-rails'
   # https://github.com/thoughtbot/factory_bot_rails
   gem 'factory_bot_rails'
-  gem 'webmock'
+  # gem 'webmock'
 end
 
 group :test do
