@@ -1,0 +1,20 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+
+// Graphical variables
+@import "config/variables";
+@import "config/bootstrap_variables";
+
+// External libraries
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+// @import "font-awesome-sprockets";
+// @import "font-awesome";
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+// Your CSS
+@import "layout/index";
+@import "components/index";
+@import "vendor/index";

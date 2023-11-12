@@ -47,7 +47,10 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'haar_joke'
+gem "cssbundling-rails", "~> 1.3"
+gem "dartsass-sprockets", "~> 3.0"
 gem "dartsass-rails", "~> 0.5.0"
+gem "bootstrap", "~> 5.3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,3 +76,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+
+
+
