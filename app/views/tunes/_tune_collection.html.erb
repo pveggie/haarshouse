@@ -1,32 +1,35 @@
-<% @tunes.each do |tune| %>
-  <div class="col-xs-12 col-sm-4 video">
-    <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
-      <div class="video" id="<%= tune.youtube_video_id %>">
-        <%= link_to(tune_path(tune), remote: true, class: 'play-button hidden') do %>
-          <div data-video-id="<%= tune.youtube_video_id%>"></div>
-        <% end %>
-      </div>
-
-      <div class="icon icon-relative-top-right flex-row">
-        <%= link_to edit_tune_path(tune), class: "edit-button" do %>
-          <i class="fa fa-edit" aria-hidden="true"></i>
-        <% end %>
-
-        <%= link_to tune_path(tune), { class: "delete-button", method: :delete, data: { confirm: "Are you sure you want to delete this tune?" } } do %>
-        <i class="fa fa-trash"></i>
-        <% end %>
-      </div>
-
-      <% unless tune.game_title.blank? && tune.song_title.blank? %>
-        <div class="caption">
-          <div class="caption-text">
-            <p><%= tune.game_title %> - <%= tune.song_title %></p>
-          </div>
-          <div class="caption-views text-right">
-            <i class="fa fa-eye" aria-hidden="true"></i> <span id="view-count-<%= tune.youtube_video_id %>"><%= tune.views %></span>
-          </div>
+<div class="row video-grid">
+  <% @tunes.each do |tune| %>
+    <div class="col-xs-12 col-sm-4 video">
+      <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
+        <div class="video" id="<%= tune.youtube_video_id %>">
+          <%= link_to(tune_path(tune), remote: true, class: 'play-button hidden') do %>
+            <div data-video-id="<%= tune.youtube_video_id%>"></div>
+          <% end %>
         </div>
-      <% end %>
+
+        <div class="icon icon-relative-top-right flex-row">
+          <%= link_to edit_tune_path(tune), class: "edit-button" do %>
+            <i class="fa fa-edit" aria-hidden="true"></i>
+          <% end %>
+
+          <%= link_to tune_path(tune), { class: "delete-button", method: :delete, data: { confirm: "Are you sure you want to delete this tune?" } } do %>
+          <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+
+        <% unless tune.game_title.blank? && tune.song_title.blank? %>
+          <div class="caption">
+            <div class="caption-text">
+              <p><%= tune.game_title %> - <%= tune.song_title %></p>
+            </div>
+            <div class="caption-views text-end">
+              <i class="fa fa-eye" aria-hidden="true"></i> <span id="view-count-<%= tune.youtube_video_id %>"><%= tune.views %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
+
