@@ -39,3 +39,5 @@ spec/examples.txt
 
 #Ignore copied files
 spec/features/capybara_cheat_sheet.rb
+/app/assets/builds/*
+!/app/assets/builds/.keep
