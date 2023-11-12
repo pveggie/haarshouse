@@ -40,6 +40,11 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  # From old app for devise
+  # config.action_mailer.default_url_options = {
+  #   host: 'localhost', port: 3000
+  # }
+
 
   config.action_mailer.perform_caching = false
 
@@ -75,4 +80,8 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # stubs out http requests to icndb in development mode
+  WebMock.enable!
+  WebMock.disable_net_connect!(allow: /youtube/, allow_localhost: true )
 end
