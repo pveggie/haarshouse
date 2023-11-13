@@ -1,19 +1,19 @@
 <div class="wrapper padded">
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 offset-sm-3">
-      <%= simple_form_for @tune do |f| %>
-        <div class="form-group">
-          <%= f.input :game_title, class: "form-control" %>
-          <%= f.input :song_title, class: "form-control" %>
-          <%= f.input :youtube_video_id, class: "form-control" %>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 offset-sm-3">
+        <%= simple_form_for @tune do |f| %>
+          <div class="form-group">
+            <%= f.input :game_title, class: "form-control" %>
+            <%= f.input :song_title, class: "form-control" %>
+            <%= f.input :youtube_video_id, class: "form-control" %>
+          </div>
           <div class="flex-row">
             <%= link_to "Cancel", tunes_path, class: "btn btn-default flex-item-half-width" %>
             <%= f.button :submit, class: "btn btn-info flex-item-half-width" %>
           </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </div>
