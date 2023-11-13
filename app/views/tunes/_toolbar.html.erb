@@ -1,67 +1,68 @@
 <!-- For larger views -->
-<div class="toolbar toolbar-full hidden-xs hidden-sm">
-  <div class="toolbar-left">
-    <div class="toolbar-label">
+<div class="toolbar d-none d-sm-none mb-5 d-md-flex align-items-center w-100">
+  <div class="toolbar-left d-flex align-items-center">
+    <div class="toolbar-label shadow me-2 text-light-gray">
       Sort all tunes
     </div>
-    <div class="toolbar-filter-buttons">
+    <div class="toolbar-filter-buttons d-flex">
       <%= form_tag(tunes_path, method: :get, class: "toolbar-link") do %>
         <%= hidden_field_tag(:sort, "by_game") %>
-        <%= submit_tag("By Game", class: "btn btn-sm btn-info") %>
+        <%= submit_tag("By Game", class: "btn btn-sm btn-info me-1") %>
       <% end %>
       <%= form_tag(tunes_path, method: :get, class: "toolbar-link") do %>
         <%= hidden_field_tag(:sort, "by_song") %>
-        <%= submit_tag("By Song", class: "btn btn-sm btn-info") %>
+        <%= submit_tag("By Song", class: "btn btn-sm btn-info me-1") %>
       <% end %>
       <%= form_tag(tunes_path, method: :get, class: "toolbar-link") do %>
         <%= hidden_field_tag(:sort, "most_viewed") %>
-        <%= submit_tag("Most Viewed", class: "btn btn-sm btn-info") %>
+        <%= submit_tag("Most Viewed", class: "btn btn-sm btn-info me-1") %>
       <% end %>
     </div>
   </div>
-  <div class="toolbar-center">
-    <%= form_tag(search_tunes_path, method: "get", class: "form-inline", id: "search-form") do %>
-      <div class="form-group">
-        <%= text_field_tag :q, nil, placeholder: "Search song or game", class: "form-control search-field" %>
-        <%= button_tag(class: "form-control search-field btn btn-default", id: "btn-search-submit") do %>
-          <i class="fa fa-search" aria-hidden="true"></i>
+  <div class="toolbar-center mx-2">
+    <%= form_tag(search_tunes_path, method: "get", id: "search-form") do %>
+      <div class="input-group input-group-sm">
+        <%= text_field_tag :q, nil, placeholder: "Search song or game", class: "form-control" %>
+        <%= button_tag(class: "btn btn-outline-light", id: "btn-search-submit") do %>
+          <i class="bi bi-search" aria-hidden="true"></i>
         <%end %>
       </div>
     <% end %>
   </div>
-  <div class="toolbar-end toolbar-link">
+  <div class="toolbar-end toolbar-link ms-auto">
     <%= link_to new_tune_path, class: "btn btn-sm btn-info" do %>
-      <i class="fa fa-plus-square" aria-hidden="true"></i> Add Song
+      <i class="bi bi-plus-lg" aria-hidden="true"></i> Add Song
     <% end %>
   </div>
 </div>
 <!-- For smaller views -->
-<div class="toolbar toolbar-mobile hidden-md hidden-lg">
-  <div class="btn-group btn-group-justified" role="group" aria-label="...">
-    <div class="dropdown btn btn-sm btn-info">
-      <div id="sortOptions" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="d-md-none d-lg-none">
+  <div class="btn-group" role="group">
+    <!-- dropdown  -->
+    <div class="btn-group" role="group">
+      <button class="btn btn-sm btn-info dropdown-toggle" data-bs-toggle="dropdown">
         Sort
-        <span class="caret"></span>
-      </div>
+      </button>
       <ul class="dropdown-menu" aria-labelledby="sortOptions">
         <li>
-          <%= link_to "By Game",tunes_path(@tunes, method: :get, sort:"by_game") %>
+          <%= link_to "By Game", tunes_path(@tunes, method: :get, sort:"by_game") %>
         </li>
         <li>
-          <%= link_to "By Song",tunes_path(@tunes, method: :get, sort:"by_song") %>
+          <%= link_to "By Song", tunes_path(@tunes, method: :get, sort:"by_song") %>
         </li>
         <li>
-          <%= link_to "Most Viewed",tunes_path(@tunes, method: :get, sort:"most_viewed") %>
+          <%= link_to "Most Viewed", tunes_path(@tunes, method: :get, sort:"most_viewed") %>
         </li>
       </ul>
     </div>
-    <div class="dropdown btn btn-sm btn-info" id="searchButtonMobile">
-      <i class="fa fa-search" aria-hidden="true"></i> Search
-    </div>
+    <button class="btn btn-sm btn-info dropdown-toggle" id="searchButtonMobile" data-bs-toggle="dropdown">
+      <i class="bi bi-search" aria-hidden="true"></i> Search
+    </button>
+    <!-- Add song -->
     <%= link_to "Add Song", new_tune_path, class: "btn btn-sm btn-info" %>
   </div>
-  <%= form_tag(search_tunes_path, method: "get", class: "form form-inline-mobile hidden", id: "searchBoxMobile") do %>
-    <div class="form-group form-group-mobile">
+  <%= form_tag(search_tunes_path, method: "get", class: "invisible", id: "searchBoxMobile") do %>
+    <div class="input-group">
       <div>
         <%= text_field_tag :q, nil, placeholder: "Search song or game", class: "form-control form-control-mobile search-field" %>
       </div>
