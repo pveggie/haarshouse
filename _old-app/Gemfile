@@ -18,35 +18,35 @@ gem 'simple_form'
 # gem 'haar_joke', path: '~/code/pveggie/haar_joke'
 gem 'devise'
 gem 'figaro'
-gem 'pg_search'
+# gem 'pg_search'
 
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails'
-  gem 'spring'
+  # gem 'rspec-rails'
+  # gem 'spring'
   # https://github.com/thoughtbot/factory_bot_rails
-  gem 'factory_bot_rails'
+  # gem 'factory_bot_rails'
   # gem 'webmock'
 end
 
 group :test do
   # https://github.com/thoughtbot/shoulda-matchers
-  gem 'shoulda-matchers'
+  # gem 'shoulda-matchers'
   # https://github.com/jdliss/shoulda-callback-matchers
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'faker'
-  gem 'guard-rspec'
+  # gem 'capybara'
+  # gem 'database_cleaner'
+  # gem 'faker'
+  # gem 'guard-rspec'
   gem 'launchy'
-  gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
-  gem 'shoulda-callback-matchers'
-  gem 'webdrivers', '~> 4.0', require: false
+  # gem 'rails-controller-testing'
+  # gem 'selenium-webdriver'
+  # gem 'shoulda-callback-matchers'
+  # gem 'webdrivers', '~> 4.0', require: false
 end
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end

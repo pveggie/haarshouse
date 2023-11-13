@@ -54,6 +54,8 @@ gem 'pg_search', '~> 2.3'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'webmock'
 end
 
@@ -65,7 +67,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'spring'
 
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
 end
@@ -74,6 +76,14 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  # https://github.com/thoughtbot/shoulda-matchers
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'guard-rspec', require: false
+  gem 'rails-controller-testing'
+  gem 'shoulda-callback-matchers'
+  gem 'shoulda-matchers'
+  gem 'webdrivers', '~> 4.0', require: false
 end
 
 gem 'erb_lint', '~> 0.5.0', require: false
