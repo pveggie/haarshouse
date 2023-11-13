@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Tune deletion', deleting: true, js: true do
   background do
     create(
-      :tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa"
+      :tune, game_title: 'a', song_title: 'a', youtube_video_id: 'aaaaaaaaaaa'
     )
     create(:tune)
   end

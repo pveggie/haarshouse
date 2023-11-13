@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.feature 'Tune editing', editing: true do
   background do
     create(
-      :tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa"
+      :tune, game_title: 'a', song_title: 'a', youtube_video_id: 'aaaaaaaaaaa'
     )
     create(
-      :tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab"
+      :tune, game_title: 'b', song_title: 'b', youtube_video_id: 'aaaaaaaaaab'
     )
     create(
-      :tune, game_title: "c", song_title: "c", youtube_video_id: "aaaaaaaaaac"
+      :tune, game_title: 'c', song_title: 'c', youtube_video_id: 'aaaaaaaaaac'
     )
     create(:tune)
   end
@@ -20,7 +20,7 @@ RSpec.feature 'Tune editing', editing: true do
     expect(page).to have_css('.video-container', count: 4)
 
     select_song_to_edit
-    check_page_and_update_song_title("")
+    check_page_and_update_song_title('')
 
     # fail and stay on add tune form
     expect(page).to have_field('Game title')
@@ -40,7 +40,7 @@ RSpec.feature 'Tune editing', editing: true do
     # save_and_open_page
 
     select_song_to_edit
-    check_page_and_update_song_title("Dragon Age II")
+    check_page_and_update_song_title('Dragon Age II')
 
     # redirected to index, tune updated
     expect(page).to have_css('.video-container')

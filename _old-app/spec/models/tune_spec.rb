@@ -3,7 +3,7 @@ require 'rails_helper'
 # Template: https://gist.github.com/kyletcarlson/6234923
 RSpec.describe Tune, type: :model do
   # Factory
-  it "has a valid factory" do
+  it 'has a valid factory' do
     expect(build(:tune)).to be_valid
   end
 
@@ -29,40 +29,40 @@ RSpec.describe Tune, type: :model do
       expect(test_tune)
         .to validate_uniqueness_of(:song_title)
         .scoped_to(:game_title)
-        .with_message("This song has already been added.")
+        .with_message('This song has already been added.')
     end
 
     it 'requires youtube_video_id to be unique' do
       expect(test_tune)
         .to validate_uniqueness_of(:youtube_video_id)
-        .with_message("This video has already been added.")
+        .with_message('This video has already been added.')
     end
 
     ## ==== YOUTUBE LINK FORMATTING
     it 'is valid with a youtube_video_id as a full link' do
       expect(test_tune)
-        .to allow_value("https://www.youtube.com/watch?v=dSCq7jTL7tQ")
+        .to allow_value('https://www.youtube.com/watch?v=dSCq7jTL7tQ')
         .for(:youtube_video_id)
     end
 
     it 'is valid with a youtube_video_id as a partial containing the id' do
       expect(test_tune)
-        .to allow_value("youtube.com/watch?v=dSCq7jTL7tQ")
+        .to allow_value('youtube.com/watch?v=dSCq7jTL7tQ')
         .for(:youtube_video_id)
     end
 
     it 'is valid with a youtube_video_id containing only the id' do
       expect(test_tune)
-        .to allow_value("dSCq7jTL7tZ")
+        .to allow_value('dSCq7jTL7tZ')
         .for(:youtube_video_id)
     end
 
     it 'is invalid when the youtube_video_id has the wrong format' do
-      expect(test_tune).to_not allow_value("Hi there").for(:youtube_video_id)
+      expect(test_tune).to_not allow_value('Hi there').for(:youtube_video_id)
     end
   end
 
-  describe "Callbacks", adding: true, editing: true do
+  describe 'Callbacks', adding: true, editing: true do
     # http://guides.rubyonrails.org/active_record_callbacks.html
     # https://github.com/beatrichartz/shoulda-callback-matchers/wiki
     let(:test_tune) { create(:tune) }
@@ -78,22 +78,22 @@ RSpec.describe Tune, type: :model do
     end
   end
 
-  describe "Scopes", viewing: true, sorting: true do
+  describe 'Scopes', viewing: true, sorting: true do
     after(:all) { Tune.destroy_all }
 
     before(:all) do
       song_details = [
         { game_title: "Assassin's Creed",
           song_title: "ezio's Family",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ",
+          youtube_video_id: 'youtube.com/watch?v=dSCq7jTL7tQ',
           views: 0 },
         { game_title: "Zssassin's Creed",
           song_title: "Azio's Family",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tZ",
+          youtube_video_id: 'youtube.com/watch?v=dSCq7jTL7tZ',
           views: 5 },
         { game_title: "mssassin's Creed",
           song_title: "Zzio's Family",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td",
+          youtube_video_id: 'youtube.com/watch?v=dSCq7jTL7td',
           views: 11 }
       ]
 
@@ -133,22 +133,22 @@ RSpec.describe Tune, type: :model do
     end
   end
 
-  describe "Searching", searching: true, viewing: true do
+  describe 'Searching', searching: true, viewing: true do
     after(:all) { Tune.destroy_all }
 
     before(:all) do
       song_details = [
         { game_title: "Assassin's Creed",
-          song_title: "Something Dragon",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tQ",
+          song_title: 'Something Dragon',
+          youtube_video_id: 'youtube.com/watch?v=dSCq7jTL7tQ',
           views: 0 },
-        { game_title: "Dragon Age 2",
-          song_title: "Fenris Theme",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7tZ",
+        { game_title: 'Dragon Age 2',
+          song_title: 'Fenris Theme',
+          youtube_video_id: 'youtube.com/watch?v=dSCq7jTL7tZ',
           views: 5 },
-        { game_title: "firedragonfire",
-          song_title: "Something Something",
-          youtube_video_id: "youtube.com/watch?v=dSCq7jTL7td",
+        { game_title: 'firedragonfire',
+          song_title: 'Something Something',
+          youtube_video_id: 'youtube.com/watch?v=dSCq7jTL7td',
           views: 11 }
       ]
 
@@ -164,32 +164,32 @@ RSpec.describe Tune, type: :model do
     end
 
     it '.search returns correct result for a perfect match' do
-      results = Tune.search("Fenris Theme").pluck(:song_title)
-      expect(results).to eq(["Fenris Theme"])
+      results = Tune.search('Fenris Theme').pluck(:song_title)
+      expect(results).to eq(['Fenris Theme'])
     end
 
     it '.search returns correct result for a partial match' do
-      results = Tune.search("Age").pluck(:game_title)
-      expect(results).to eq(["Dragon Age 2"])
+      results = Tune.search('Age').pluck(:game_title)
+      expect(results).to eq(['Dragon Age 2'])
     end
 
     it '.search is case insensitive' do
-      results = Tune.search("fenris").pluck(:song_title)
-      expect(results).to eq(["Fenris Theme"])
+      results = Tune.search('fenris').pluck(:song_title)
+      expect(results).to eq(['Fenris Theme'])
     end
 
     it '.search returns matches for both game_title and song_title' do
-      results = Tune.search("dragon").pluck(:song_title)
-      expect(results).to eq(["Something Dragon", "Fenris Theme"])
+      results = Tune.search('dragon').pluck(:song_title)
+      expect(results).to eq(['Something Dragon', 'Fenris Theme'])
     end
 
     it '.search finds matches when \'s is not typed' do
-      results = Tune.search("assassin").pluck(:game_title)
+      results = Tune.search('assassin').pluck(:game_title)
       expect(results).to eq(["Assassin's Creed"])
     end
 
     it '.search finds matches containing the typed word' do
-      results = Tune.search("ass").pluck(:game_title)
+      results = Tune.search('ass').pluck(:game_title)
       expect(results).to eq(["Assassin's Creed"])
     end
 

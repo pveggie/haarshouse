@@ -8,17 +8,16 @@
 Tune.destroy_all
 
 videos = [
-            {video_id: "8CP7TvaySew", game_title: "Rayman Legends", song_title: "Orchestral Chaos"},
-            {video_id: "g5LdihtCspc", game_title: "Tales of Symphonia", song_title: "Anchoret"},
-            {video_id: "sToVooxkJGE", game_title: "Fire Emblem: Radiant Dawn", song_title: "Eternal Bond"},
-            {video_id: "eb6_J1dq1hk", game_title: "Mass Effect 2", song_title: "Suicide Mission"},
-            {video_id: "YV_jKDc1iow", game_title: "Brutal Legend", song_title: "Girlfriend (Kabbage Boy)"},
-            {video_id: "u1nZMU1l0Os", game_title: "Remember Me", song_title: "Still Human"},
-          ]
+  { video_id: '8CP7TvaySew', game_title: 'Rayman Legends', song_title: 'Orchestral Chaos' },
+  { video_id: 'g5LdihtCspc', game_title: 'Tales of Symphonia', song_title: 'Anchoret' },
+  { video_id: 'sToVooxkJGE', game_title: 'Fire Emblem: Radiant Dawn', song_title: 'Eternal Bond' },
+  { video_id: 'eb6_J1dq1hk', game_title: 'Mass Effect 2', song_title: 'Suicide Mission' },
+  { video_id: 'YV_jKDc1iow', game_title: 'Brutal Legend', song_title: 'Girlfriend (Kabbage Boy)' },
+  { video_id: 'u1nZMU1l0Os', game_title: 'Remember Me', song_title: 'Still Human' }
+]
 
 videos.each do |video|
-  Tune.create!(  youtube_video_id: video[:video_id],
-                  game_title: video[:game_title],
-                  song_title: video[:song_title]
-              )
+  Tune.create!(youtube_video_id: video[:video_id],
+               game_title: video[:game_title],
+               song_title: video[:song_title])
 end

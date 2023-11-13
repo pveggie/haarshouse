@@ -42,13 +42,13 @@ RSpec.feature 'Tune addition', adding: true, visible: true do
 
   background(run: true) do
     create(
-      :tune, game_title: "a", song_title: "a", youtube_video_id: "aaaaaaaaaaa"
+      :tune, game_title: 'a', song_title: 'a', youtube_video_id: 'aaaaaaaaaaa'
     )
     create(
-      :tune, game_title: "b", song_title: "b", youtube_video_id: "aaaaaaaaaab"
+      :tune, game_title: 'b', song_title: 'b', youtube_video_id: 'aaaaaaaaaab'
     )
     create(
-      :tune, game_title: "c", song_title: "c", youtube_video_id: "aaaaaaaaaac"
+      :tune, game_title: 'c', song_title: 'c', youtube_video_id: 'aaaaaaaaaac'
     )
   end
 

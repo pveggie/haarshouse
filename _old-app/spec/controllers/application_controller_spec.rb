@@ -5,13 +5,13 @@ class AnonymousController < ApplicationController
   # and provide a view.
   # This method has a test/dev-only route.
   def show
-    render :plain => 'Show called'
+    render plain: 'Show called'
   end
 end
 
 RSpec.describe AnonymousController do
-    it "assigns a joke as @haar_joke" do
-      get :show
-      expect(assigns(:haar_joke)).to match(/Haar/)
-    end
+  it 'assigns a joke as @haar_joke' do
+    get :show
+    expect(assigns(:haar_joke)).to match(/Haar/)
+  end
 end

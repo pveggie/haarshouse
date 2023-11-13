@@ -79,4 +79,5 @@ end
 gem 'erb_lint', '~> 0.5.0', require: false
 gem 'htmlbeautifier', '~> 1.4', require: false
 gem 'rubocop', '~> 1.57', require: false
+gem 'rubocop-capybara', '~> 2.19', require: false
 gem 'rubocop-rails', '~> 2.22', require: false

@@ -14,6 +14,9 @@ module ResponsiveHelpers
   private
 
   def resize_window_by(size)
-    Capybara.current_session.driver.browser.manage.window.resize_to(size[0], size[1]) if Capybara.current_session.driver.browser.respond_to? 'manage'
+    return unless Capybara.current_session.driver.browser.respond_to? 'manage'
+
+    Capybara.current_session.driver.browser.manage.window.resize_to(size[0],
+                                                                    size[1])
   end
 end

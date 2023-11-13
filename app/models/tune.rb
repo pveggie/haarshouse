@@ -14,17 +14,17 @@ class Tune < ActiveRecord::Base
             presence: true,
             uniqueness: {
               scope: :game_title,
-              message: "This song has already been added."
+              message: 'This song has already been added.'
             }
   # has to accept only the video id for update purposes
   validates :youtube_video_id,
             presence: true,
             uniqueness: {
-              message: "This video has already been added."
+              message: 'This video has already been added.'
             },
             format: {
-              with: /.*youtu.*[=\/]([\w-]*)|[\w|-]{11}/,
-              message: "Please check your youtube link."
+              with: %r{.*youtu.*[=/]([\w-]*)|[\w|-]{11}},
+              message: 'Please check your youtube link.'
             }
 
   # == Scopes ===============================================================
@@ -34,12 +34,12 @@ class Tune < ActiveRecord::Base
   scope :most_viewed, -> { order(views: :desc) }
 
   pg_search_scope :search,
-                  against: [:game_title, :song_title],
+                  against: %i[game_title song_title],
                   using: {
-                    :tsearch => {
+                    tsearch: {
                       prefix: true,
-                      dictionary: "english"
-                    },
+                      dictionary: 'english'
+                    }
                   }
 
   # == Callbacks ============================================================
@@ -50,6 +50,7 @@ class Tune < ActiveRecord::Base
   def extract_video_id_from_youtube_url
     # for update we just return what's already there
     return if youtube_video_id =~ /^[\w-]{11}$/
-    self.youtube_video_id = youtube_video_id.match(/.*youtu.*[=\/]([\w-]*)/)[1]
+
+    self.youtube_video_id = youtube_video_id.match(%r{.*youtu.*[=/]([\w-]*)})[1]
   end
 end
