@@ -50,6 +50,7 @@ gem 'dartsass-rails', '~> 0.5.0'
 gem 'dartsass-sprockets', '~> 3.0'
 gem 'haar_joke'
 gem 'pg_search', '~> 2.3'
+gem 'simple_form'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
