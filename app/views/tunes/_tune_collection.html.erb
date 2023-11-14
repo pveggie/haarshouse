@@ -1,11 +1,9 @@
-<div class="row video-grid">
+<div class="row video-grid" data-controller="video">
   <% @tunes.each do |tune| %>
     <div class="col-xs-12 col-sm-4 video">
       <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
-        <div class="video" id="<%= tune.youtube_video_id %>">
-          <%= link_to(tune_path(tune), remote: true, class: 'play-button hidden') do %>
-            <div data-video-id="<%= tune.youtube_video_id%>"></div>
-          <% end %>
+        <div class="video" id="video-<%= tune.youtube_video_id %>">
+          <%= button_to "Play", tune_path(tune), remote: true, class: 'play-button hidden d-block', "data-action": "click->video#play", "data-video-id-param": tune.youtube_video_id, "data-video-view-count-param": tune.views %>
         </div>
         <div class="icon icon-relative-top-right flex-row">
           <%= link_to edit_tune_path(tune), class: "edit-button" do %>

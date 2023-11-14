@@ -4,12 +4,12 @@ $(document).on("turbo:load", () => {
   // Load the IFrame Player API code asynchronously.
   // Playing videos is handled in the AJAX request form
   // views/tunes/show.js.erb
-  var tag = document.createElement('script');
+  // var tag = document.createElement('script');
 
-  tag.src = "https://www.youtube.com/player_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  $('.play-button').removeClass('hidden');
+  // tag.src = "https://www.youtube.com/player_api";
+  // var firstScriptTag = document.getElementsByTagName('script')[0];
+  // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // $('.play-button').removeClass('hidden');
 
   $('#searchButtonMobile').click(function(){
     $('#searchBoxMobile').removeClass('hidden');
