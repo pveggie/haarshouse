@@ -45,13 +45,13 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="sortOptions">
         <li>
-          <%= link_to "By Game", tunes_path(@tunes, method: :get, sort:"by_game") %>
+          <%= link_to "By Game", tunes_path(@tunes, method: :get, sort:"by_game"), class: "dropdown-item text-white" %>
         </li>
         <li>
-          <%= link_to "By Song", tunes_path(@tunes, method: :get, sort:"by_song") %>
+          <%= link_to "By Song", tunes_path(@tunes, method: :get, sort:"by_song"), class: "dropdown-item text-white" %>
         </li>
         <li>
-          <%= link_to "Most Viewed", tunes_path(@tunes, method: :get, sort:"most_viewed") %>
+          <%= link_to "Most Viewed", tunes_path(@tunes, method: :get, sort:"most_viewed"), class: "dropdown-item text-white" %>
         </li>
       </ul>
     </div>
