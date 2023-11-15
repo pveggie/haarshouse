@@ -2,8 +2,12 @@
   <% @tunes.each do |tune| %>
     <div class="col-xs-12 col-sm-4 video">
       <div class="video-container" id="container-<%= tune.youtube_video_id %>"/>
-        <div class="video" id="video-<%= tune.youtube_video_id %>">
-          <%= button_to "Play", tune_path(tune), remote: true, class: 'play-button hidden d-block', "data-action": "click->video#play", "data-video-id-param": tune.youtube_video_id, "data-video-view-count-param": tune.views %>
+        <div class="video" id="youtube-placeholder-<%= tune.youtube_video_id %>">
+          <button class='play-button hidden d-block' data-action="click->video#play"
+            data-video-id-param="<%= tune.id%>"
+            data-video-youtube-id-param="<%= tune.youtube_video_id%>" data-video-view-count-param="<%= tune.views %>">
+            Play
+          </button>
         </div>
         <div class="icon icon-relative-top-right flex-row">
           <%= link_to edit_tune_path(tune), class: "edit-button" do %>
@@ -19,7 +23,7 @@
               <p><%= tune.game_title %> - <%= tune.song_title %></p>
             </div>
             <div class="caption-views text-end">
-              <i class="bi bi-eye" aria-hidden="true"></i> <span id="view-count-<%= tune.youtube_video_id %>"><%= tune.views %></span>
+              <i class="bi bi-eye" aria-hidden="true"></i> <span data-video-target="viewCount" id="view-count-<%= tune.youtube_video_id %>"><%= tune.views %></span>
             </div>
           </div>
         <% end %>

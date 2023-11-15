@@ -2,7 +2,7 @@
 class TunesController < ApplicationController
   require 'json'
   require 'open-uri'
-  before_action :find_tune, only: %i[show update destroy]
+  before_action :find_tune, only: %i[increment_views update destroy]
 
   def index
     @tunes = params[:sort].nil? ? Tune.by_date : tunes_sorted(params[:sort])
@@ -17,17 +17,17 @@ class TunesController < ApplicationController
     @tune = Tune.new
   end
 
-  def show
-    @tune.views += 1
-    @tune.save
-    respond_to do |format|
-      format.html do
-        flash[:alert] = 'JavaScript needs to be enabled to play videos.'
-        redirect_to tunes_path
-      end
-      format.js
-    end
-  end
+  # def show
+  #   @tune.views += 1
+  #   @tune.save
+  #   # respond_to do |format|
+  #   #   format.html do
+  #   #     flash[:alert] = 'JavaScript needs to be enabled to play videos.'
+  #   #     redirect_to tunes_path
+  #   #   end
+  #   #   format.js
+  #   # end
+  # end
 
   def create
     @tune = Tune.new(tune_params)
@@ -54,6 +54,11 @@ class TunesController < ApplicationController
     redirect_to tunes_path
   end
 
+  def increment_views
+    @tune.views += 1
+    render json: @tune if @tune.save
+  end
+
   private
 
   def find_tune
@@ -61,7 +66,7 @@ class TunesController < ApplicationController
   end
 
   def tune_params
-    params.require(:tune).permit(:game_title, :song_title, :youtube_video_id)
+    params.fetch(:tune, {}).permit(:game_title, :song_title, :youtube_video_id)
   end
 
   def tunes_sorted(sort)

@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus";
+import { fetchRails } from "../helpers/railsRequest";
 
 // Connects to data-controller="init-videos"
 export default class extends Controller {
+  static targets = ["viewCount"];
   connect() {
     const youtubeApiUrl = "https://www.youtube.com/player_api";
     const youtubeScriptElement = document.createElement("script");
@@ -11,25 +13,30 @@ export default class extends Controller {
     $(".play-button").removeClass("hidden");
   }
 
-  updateDisplayedViewCount(videoId, viewCount) {
-    // Get element to be updated
-    var viewCountElement = $("#view-count-" + videoId);
-    // Get updated value of views
-    var newViewCount = viewCount++;
-    //Update views value
-    viewCountElement.text(newViewCount);
+  async updateViewCount(id, youtubeId) {
+    const response = await fetchRails(`/tunes/${id}/increment_views`, {
+      method: "patch",
+    });
+
+    var viewCountElement = this.viewCountTargets.find(
+      (k) => k.id === `view-count-${youtubeId}`
+    );
+
+    if (response && response.views && viewCountElement) {
+      viewCountElement.innerHTML = response.views;
+    }
   }
 
   play({ params }) {
-    const { id: videoId, viewCount } = params;
+    const { id, youtubeId } = params;
 
     const onPlayerReady = (e) => {
       e.target.playVideo();
-      this.updateDisplayedViewCount(videoId, viewCount);
+      this.updateViewCount(id, youtubeId);
     };
 
-    new YT.Player(`video-${videoId}`, {
-      videoId: videoId,
+    new YT.Player(`youtube-placeholder-${youtubeId}`, {
+      videoId: youtubeId,
       playerVars: { autoplay: 1 },
       events: {
         onReady: onPlayerReady,

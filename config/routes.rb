@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'tunes#index'
   resources :tunes do
     collection { get 'search' }
+    collection { patch '/:id/increment_views', to: 'tunes#increment_views', as: 'tune' }
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Define your application routes per the DSL in http_s://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
