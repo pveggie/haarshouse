@@ -19,5 +19,6 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "license": "MIT"
 }
