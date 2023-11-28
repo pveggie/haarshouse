@@ -1,0 +1,23 @@
+# dev/build outputs
+app/assets/builds
+**/vendor
+public
+storage
+tmp
+
+# generated files
+**/schema.rb
+
+# Node dependencies / Vendor
+node_modules
+
+# Logs
+log
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+_old-app
