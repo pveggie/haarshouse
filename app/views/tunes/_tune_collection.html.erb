@@ -11,10 +11,10 @@
         </div>
         <div class="icon icon-relative-top-right d-flex">
           <%= link_to edit_tune_path(tune), class: "edit-button" do %>
-            <i class="bi bi-edit" aria-hidden="true"></i>
+            <i class="bi bi-pencil-square" aria-hidden="true"><span class="visually-hidden-focusable">Edit Song</span></i>
           <% end %>
-          <%= link_to tune_path(tune), { class: "delete-button", method: :delete, data: { confirm: "Are you sure you want to delete this tune?" } } do %>
-            <i class="bi bi-trash"></i>
+          <%= link_to tune_path(tune), class: "delete-button", data: { turbo_confirm: "Are you sure you want to delete this tune?", turbo_method: :delete }  do %>
+            <i class="bi bi-trash"><span class="visually-hidden-focusable">Delete Song</span></i>
           <% end %>
         </div>
         <% unless tune.game_title.blank? && tune.song_title.blank? %>

@@ -2,7 +2,7 @@
 class TunesController < ApplicationController
   require 'json'
   require 'open-uri'
-  before_action :find_tune, only: %i[increment_views update destroy]
+  before_action :find_tune, only: %i[increment_views edit update destroy]
 
   def index
     @tunes = params[:sort].nil? ? Tune.by_date : tunes_sorted(params[:sort])
@@ -16,6 +16,8 @@ class TunesController < ApplicationController
   def new
     @tune = Tune.new
   end
+
+  def edit; end
 
   # def show
   #   @tune.views += 1
