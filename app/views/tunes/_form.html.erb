@@ -1,0 +1,19 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-6">
+      <div class="card bg-light">
+        <div class="card-body">
+          <%= simple_form_for @tune do |f| %>
+            <%= f.input :game_title%>
+            <%= f.input :song_title%>
+            <%= f.input :youtube_video_id%>
+            <div class="d-flex justify-content-between">
+              <%= link_to "Cancel", tunes_path, class: "btn btn-secondary w-100 me-2" %>
+              <%= f.button :submit, class: "btn btn-primary w-100 ms-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

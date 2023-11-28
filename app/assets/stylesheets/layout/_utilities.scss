@@ -10,21 +10,6 @@
   padding-bottom: 2.5em;
 }
 
-.padded-right {
-  padding-right: 1em;
-}
-
-// Backgrounds
-.bg-black {
-  background: $gray-darker;
-}
-.bg-gray {
-  background: $gray-lightest;
-}
-.bg-primary {
-  background: $brand-color;
-}
-
 .text-gray {
   color: $gray-darker;
 }
@@ -36,23 +21,3 @@
 .text-small {
   font-size: 10px;
 }
-
-.flex-row {
-  display: flex;
-}
-
-.flex-container {
-  display: flex;
-  align-items: center;
-}
-
-.flex-item-half-width{
-  flex: 0 0 50%;
-  border-collapse: collapse;
-}
-
-.width-full {
-  width: 100%;
-}
-
-
